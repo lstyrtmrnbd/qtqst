@@ -16,6 +16,6 @@ private:
 
   Terrain terrain;
   std::vector<Entity> entities;
-}
+};
 
 #endif // CELL_INCLUDE

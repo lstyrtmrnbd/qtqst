@@ -15,6 +15,6 @@ private:
 
   std::vector<vector<Cell>> cells;
  
-}
+};
 
 #endif // LEVEL_INCLUDE
