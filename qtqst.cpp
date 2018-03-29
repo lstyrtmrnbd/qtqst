@@ -1,5 +1,7 @@
 #include <SFML/Graphics.hpp>
 
+#include "AnimatedSprite.hpp"
+
 int main() {
   
   sf::RenderWindow window(sf::VideoMode(640, 480), "qtqst under construction");
