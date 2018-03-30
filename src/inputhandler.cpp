@@ -3,20 +3,21 @@
 InputHandler::InputHandler(sf::RenderWindow& window, sf::CircleShape& player):
   window(window), player(player) {
 
+  keyMap = new std::map<std::string, sf::Keyboard::Key*> {
+    std::make_pair( "left", sf::Keyboard::Left ),
+    std::make_pair( "right", sf::Keyboard::Right ),
+    std::make_pair( "up", sf::Keyboard::Up ),
+    std::make_pair( "down", sf::Keyboard::Down)
+  };
 }
 
-void InputHandler::changeState(InputState newState) {
+void InputHandler::changeInputState(InputState newState) {
 
   this->state = newState;
 }
 
-void InputHandler::handleInput(sf::Event& event) {
+void InputHandler::handlePlayerInput(sf::Event& event) {
 
-  if(event.type == sf::Event::Closed) {
-
-    window.close();
-  }
-  
   if(event.type == sf::Event::KeyPressed) {
 
     switch(event.key.code) {
@@ -49,5 +50,24 @@ void InputHandler::handleInput(sf::Event& event) {
       default:
         break;
     }
+  }
+}
+
+void InputHandler::handleInput(sf::Event& event) {
+
+  if(event.type == sf::Event::Closed) {
+
+    window.close();
+  }
+  
+  switch(this->state) {
+
+    case playerMove:
+      handlePlayerInput(event);
+      break;
+
+    default:
+      break;
+
   }
 }
