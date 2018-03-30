@@ -16,6 +16,7 @@ public:
   };
 
   InputHandler(sf::RenderWindow& window, sf::CircleShape& player);
+  ~InputHandler();
   void changeInputState(InputState newState);
   void handleInput(sf::Event& event);
 

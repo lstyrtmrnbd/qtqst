@@ -15,6 +15,11 @@ InputHandler::InputHandler(sf::RenderWindow& window, sf::CircleShape& player):
   
 }
 
+InputHandler::~InputHandler(){
+
+  delete keyMap;
+}
+
 void InputHandler::changeInputState(InputState newState) {
 
   this->state = newState;
