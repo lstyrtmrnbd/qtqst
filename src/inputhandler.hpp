@@ -12,7 +12,8 @@ public:
 
   enum InputState {
 
-    playerMove
+    playerMove,
+    optionsMenu
   };
 
   InputHandler(sf::RenderWindow& window, sf::CircleShape& player);
