@@ -2,6 +2,8 @@
 
 #include "AnimatedSprite.hpp"
 
+#include "inputhandler.hpp"
+
 int main() {
   
   sf::RenderWindow window(sf::VideoMode(640, 480), "qtqst under construction");
@@ -9,57 +11,15 @@ int main() {
   sf::CircleShape shape(100.f);
   shape.setFillColor(sf::Color::Green);
 
+  InputHandler handler(window, shape);
+
   while (window.isOpen()) {
       
     sf::Event event;
         
     while (window.pollEvent(event)) {
           
-      switch(event.type) {
-
-        case sf::Event::Closed:
-
-          window.close();
-          break;
-
-        case sf::Event::KeyPressed:
-
-          switch(event.key.code) {
-
-            case sf::Keyboard::Left:
-
-              shape.setFillColor(sf::Color::Red);
-              break;
-
-            case::sf::Keyboard::Right:
-
-              shape.setFillColor(sf::Color::Green);
-              break;
-
-            case sf::Keyboard::Up:
-
-              shape.setFillColor(sf::Color::Blue);
-              break;
-
-            case sf::Keyboard::Down:
-              
-              shape.setFillColor(sf::Color::Yellow);
-              break;
-
-            case sf::Keyboard::Escape:
-
-              window.close();
-              break;
-
-            default:
-              break;
-          }
-          break;
-
-        default:
-          break;
-            
-      }
+      handler.handleInput(event);
     }
 
     window.clear();
