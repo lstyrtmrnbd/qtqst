@@ -3,12 +3,16 @@
 InputHandler::InputHandler(sf::RenderWindow& window, sf::CircleShape& player):
   window(window), player(player) {
 
-  keyMap = new std::map<std::string, sf::Keyboard::Key*> {
-    std::make_pair( "left", sf::Keyboard::Left ),
-    std::make_pair( "right", sf::Keyboard::Right ),
-    std::make_pair( "up", sf::Keyboard::Up ),
-    std::make_pair( "down", sf::Keyboard::Down)
-  };
+  this->state = playerMove;
+  
+  keyMap = new std::map<std::string, sf::Keyboard::Key>();
+
+  (*keyMap)["left"] = sf::Keyboard::Left;
+  (*keyMap)["right"] = sf::Keyboard::Right;
+  (*keyMap)["up"] = sf::Keyboard::Up;
+  (*keyMap)["down"] = sf::Keyboard::Down;
+  (*keyMap)["quit"] = sf::Keyboard::Escape;
+  
 }
 
 void InputHandler::changeInputState(InputState newState) {
@@ -18,37 +22,31 @@ void InputHandler::changeInputState(InputState newState) {
 
 void InputHandler::handlePlayerInput(sf::Event& event) {
 
+  std::map<std::string, sf::Keyboard::Key>& keys = *this->keyMap;
+
   if(event.type == sf::Event::KeyPressed) {
 
-    switch(event.key.code) {
+    sf::Keyboard::Key key = event.key.code;
 
-      case sf::Keyboard::Left:
-
+    if(key == keys["left"]) {
+      
         player.setFillColor(sf::Color::Red);
-        break;
-
-      case::sf::Keyboard::Right:
+        
+    } else if(key == keys["right"]) {
 
         player.setFillColor(sf::Color::Green);
-        break;
-
-      case sf::Keyboard::Up:
+        
+    } else if(key == keys["up"]) {
 
         player.setFillColor(sf::Color::Blue);
-        break;
-
-      case sf::Keyboard::Down:
+        
+    } else if(key == keys["down"]) {
               
         player.setFillColor(sf::Color::Yellow);
-        break;
-
-      case sf::Keyboard::Escape:
+        
+    } else if(key == keys["quit"]) {
 
         window.close();
-        break;
-
-      default:
-        break;
     }
   }
 }

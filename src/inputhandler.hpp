@@ -24,7 +24,7 @@ private:
   sf::RenderWindow& window;
   sf::CircleShape& player;
   InputState state;
-  std::map<std::string, sf::Keyboard::Key*> keyMap;
+  std::map<std::string, sf::Keyboard::Key>* keyMap;
 
   void handlePlayerInput(sf::Event& event);
 };
