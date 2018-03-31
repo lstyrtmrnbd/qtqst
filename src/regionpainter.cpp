@@ -2,5 +2,5 @@
 
 void RegionPainter::paintEmptyRegion(Region& region) {
 
-  region.setEnvironment();
+  region.setEnvironment(/*a global environment construct*/);
 }

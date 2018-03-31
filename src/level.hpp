@@ -6,6 +6,7 @@
 #include "cell.hpp"
 #include "entity.hpp"
 #include "region.hpp"
+#include "Sprite.hpp"
 
 class Level {
 
@@ -20,7 +21,7 @@ public:
   
   ~Level();
   
-  void updateGameLogic(double dticks); // in ticks mind you!
+  void update(double dticks); // in ticks mind you!
   void render(double dt); // in seconds mind you!
   
 private:
@@ -29,7 +30,7 @@ private:
   std::vector<Entity>* entities;   // everything that *lives* in the level goes here 
   std::vector<Region>* regions;
 
-  std::vector<swift::Sprite>* staticSprites; // sprites for terrain & buildings
+  // std::vector<swift::Sprite>* staticSprites; // sprites for terrain & buildings
   // animated sprites will be grabbed from each entity upon rendering
 };
 

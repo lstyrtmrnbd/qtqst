@@ -5,7 +5,10 @@
 #include "SpriteBatch.hpp"
 
 /**
- *Defines a mapping of terrain and buildings to sprites
+ * -Defines a mapping of terrain and buildings to sprites
+ *
+ * -Holds info to generate sprite batch and sprites
+ * -DOES NOT hold anything necessary for rendering
  */
 class Environment {
 
@@ -19,8 +22,7 @@ public:
 private:
 
   sf::Texture* spritesheet;
-  //std::vector<swift::Sprite> sprites; //this goes in the Level
-  std::map<TerrainType, sf::IntRect>* terrainSpriteBoxes; 
+  std::map<TerrainType, sf::IntRect>* terrainSpriteBoxes;
   
 };
 
