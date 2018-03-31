@@ -9,5 +9,5 @@ Level* LevelPainter::paintEmptyLevel(int width, int height) {
 
   RegionPainter::paintEmptyRegion(regions.front());
   
-  Level* newLevel = new Level();
+  Level* newLevel = new Level(cells, regions);
 }
