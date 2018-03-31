@@ -3,8 +3,11 @@
 #include "AnimatedSprite.hpp"
 
 #include "inputhandler.hpp"
+#include "level.hpp"
 
 double secondsPerTick = 0.5;
+
+Level* currentLevel;
 
 int main() {
   
@@ -30,7 +33,7 @@ int main() {
 
     //currentLevel.updateGameLogic(dt * secondsPerTick);
 
-    //currentLEvel.updateRendition(dt);
+    //currentLevel.updateRendition(dt);
     
     window.clear();
     window.draw(shape);

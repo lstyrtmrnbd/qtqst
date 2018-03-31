@@ -7,19 +7,20 @@ class Terrain {
 
 public:
 
-  Terrain();
-
-  enum Type {
+  // how broad should this be?
+  enum TerrainType {
 
     grass,
     dirt,
     snow
 
   };
-  
+
+  Terrain();
+  ~Terrain();
+   
 private:
 
-  virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 };
 
 #endif // TERRAIN_INCLUDE
