@@ -9,8 +9,6 @@ public:
 
   static Level* paintEmptyLevel(int width, int height);
 
-private:
-
 };
 
 #endif // LEVEL_PAINTER_INCLUDE

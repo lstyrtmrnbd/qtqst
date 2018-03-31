@@ -5,6 +5,7 @@
 
 #include "cell.hpp"
 #include "entity.hpp"
+#include "region.hpp"
 
 class Level {
 
@@ -23,6 +24,7 @@ private:
 
   std::vector<std::vector<Cell>>* cells;
   std::vector<Entity>* entities;   // everything that *lives* in the level goes here 
+  std::vector<Region>* regions;
 };
 
 #endif // LEVEL_INCLUDE
