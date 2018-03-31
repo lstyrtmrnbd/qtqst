@@ -10,7 +10,8 @@
 
 /**
  * -Holds the actual map cell grid and the entities of the map
- * -Maintains the Regions it contains, and delegates 
+ * -Maintains the Regions it contains, and delegates
+ * -It is constructed by LevelPainter, which creates its major structures
  */
 
 class Level {
@@ -26,7 +27,7 @@ public:
   ~Level();
   
   void update(double dticks); // in ticks mind you!
-  void render(double dtime); // in seconds mind you!
+  void render(double dtime);  // in seconds mind you!
   
 private:
 

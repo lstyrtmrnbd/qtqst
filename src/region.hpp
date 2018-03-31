@@ -39,12 +39,17 @@ private:
   int top;
   int right;
   int bottom;
+
+  int width;
+  int height;
   
   bool activeRegion = true; // events in this region are being simulated
 
-  std::vector<std::vector<Cell>>* cells;
-  Environment* environment;  // defines how to get the static sprites for the region 
-  swift::SpriteBatch* batch; // holds the static sprites of the region, are drawn in render()
+  std::vector<std::vector<Cell>>* cells; // a reference to its parent Level's cell grid
+  Environment* environment;              // defines how to get the static sprites for the region
+  
+  std::vector<swift::Sprite>* staticSprites; // holds the Sprites attached to batch
+  swift::SpriteBatch* batch;                 // holds the static SpriteBatch, drawn in render()
 
 };
 
