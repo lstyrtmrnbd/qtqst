@@ -8,6 +8,11 @@
 #include "region.hpp"
 #include "Sprite.hpp"
 
+/**
+ * -Holds the actual map cell grid and the entities of the map
+ * -Maintains the Regions it contains, and delegates 
+ */
+
 class Level {
 
 public:
@@ -15,14 +20,13 @@ public:
   int width;
   int height;
 
-  Level(int width, int height);
-   // initialize a level with a premade cell grid and region assignments
+  // initialize a level with a premade cell grid and region assignments
   Level(std::vector<std::vector<Cell>>*, std::vector<Region>*);
   
   ~Level();
   
   void update(double dticks); // in ticks mind you!
-  void render(double dt); // in seconds mind you!
+  void render(double dtime); // in seconds mind you!
   
 private:
 

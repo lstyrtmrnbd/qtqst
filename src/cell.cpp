@@ -1,5 +1,5 @@
 #include "cell.hpp"
 
-Cell::Cell() {
+Cell::Cell(Terrain terrain): terrain(terrain) {
 
 }

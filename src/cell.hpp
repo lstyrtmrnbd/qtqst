@@ -8,7 +8,6 @@ class Cell {
 
 public:
 
-  Cell(); //needs a default constructor for empty initialization of level
   Cell(Terrain terrain);
   void push(Inhabitant* inhab);
   Inhabitant* pop();

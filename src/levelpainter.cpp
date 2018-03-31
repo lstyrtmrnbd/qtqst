@@ -3,11 +3,12 @@
 Level* LevelPainter::paintEmptyLevel(int width, int height) {
 
   std::vector<std::vector<Cell>>* cells;
-  cells = new std::vector<std::vector<Cell>>(width, std::vector<Cell>(height, Cell(Terrain(TerrainType::grass))));
+  Terrain terrain = Terrain(Terrain::TerrainType::grass);
+  cells = new std::vector<std::vector<Cell>>(width, std::vector<Cell>(height, Cell(terrain)));
 
   std::vector<Region>* regions = new std::vector<Region>(1, Region(0, 0, width, height));
 
-  RegionPainter::paintEmptyRegion(regions.front());
+  RegionPainter::paintEmptyRegion(regions->front());
   
   Level* newLevel = new Level(cells, regions);
 }

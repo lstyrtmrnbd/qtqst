@@ -14,16 +14,16 @@ class Environment {
 
 public:
 
-  Environment(sf::Texture spritesheet);
+  Environment(sf::Texture* spritesheet);
 
-  void setSpriteBox(TerrainType, sf::IntRect);
-  sf::IntRect getSpriteBox(TerrainType);
+  void setSpriteBox(Terrain::TerrainType, sf::IntRect);
+  sf::IntRect getSpriteBox(Terrain::TerrainType);
   
 private:
 
   sf::Texture* spritesheet;
-  std::map<TerrainType, sf::IntRect>* terrainSpriteBoxes;
+  std::map<Terrain::TerrainType, sf::IntRect>* terrainSpriteBoxes;
   
 };
 
-#endife // ENVIRONMENT_INCLUDE
+#endif // ENVIRONMENT_INCLUDE
