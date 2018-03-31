@@ -2,6 +2,10 @@
 #define LEVEL_PAINTER_INCLUDE
 
 #include "level.hpp"
+#include "region.hpp"
+#include "regionpainter.hpp"
+#include "cell.hpp"
+#include "terrain.hpp"
 
 class LevelPainter {
 

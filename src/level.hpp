@@ -14,9 +14,12 @@ public:
   int width;
   int height;
 
-  Level(int width, int height);    // initialize an empty level
-  Level(std::vector<std::vector<Cell>>* cells); // initialize a level with a premade cell grid
+  Level(int width, int height);
+   // initialize a level with a premade cell grid and region assignments
+  Level(std::vector<std::vector<Cell>>*, std::vector<Region>*);
+  
   ~Level();
+  
   void updateGameLogic(double dticks); // in ticks mind you!
   void updateRendition(double dt); // in seconds mind you!
   

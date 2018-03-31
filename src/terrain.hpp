@@ -16,8 +16,11 @@ public:
 
   };
 
-  Terrain();
+  Terrain(TerrainType);
+  
   ~Terrain();
+
+  TerrainType terrainType;
    
 private:
 

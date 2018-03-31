@@ -1,6 +1,6 @@
 #include "terrain.hpp"
 
-Terrain::Terrain() {
+Terrain::Terrain(TerrainType terrainType): terrainType(terrainType) {
 
 }
 
