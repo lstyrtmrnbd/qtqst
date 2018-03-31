@@ -3,7 +3,7 @@
 
 #include "cell.hpp"
 
-class Entity {
+class Entity : public Inhabitant {
 
 public:
 
@@ -23,4 +23,4 @@ private:
   void move(double dt); //called during update to progress movement, dt is in 'ticks'
 };
 
-#endif ENTITY_INCLUDE
+#endif // ENTITY_INCLUDE

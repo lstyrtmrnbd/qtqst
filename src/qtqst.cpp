@@ -13,7 +13,7 @@ int main() {
   sf::CircleShape shape(100.f);
   shape.setFillColor(sf::Color::Green);
 
-  sd::Clock clock;
+  sf::Clock clock;
 
   InputHandler handler(window, shape);
 

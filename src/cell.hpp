@@ -2,20 +2,20 @@
 #define CELL_INCLUDE
 
 #include "terrain.hpp"
-#include "entity.hpp"
+#include "inhabitant.hpp"
 
 class Cell {
 
 public:
 
-  Cell(Terrain);
-  void push(Entity);
-  Entity pop();
+  Cell(Terrain terrain);
+  void push(Inhabitant* ent);
+  Inhabitant* pop();
 
 private:
 
   Terrain terrain;
-  std::vector<Entity> entities;
+  std::vector<Inhabitant*> inhabitants;
 };
 
 #endif // CELL_INCLUDE
