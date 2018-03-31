@@ -7,7 +7,6 @@
 /**
  * -Holds a terrain, and a list of pointers to its current inhabitants
  */
-
 class Cell {
 
 public:

@@ -18,6 +18,7 @@ public:
 
   void setSpriteBox(Terrain::TerrainType, sf::IntRect);
   sf::IntRect getSpriteBox(Terrain::TerrainType);
+  sf::Texture* getSpritesheet();
   
 private:
 

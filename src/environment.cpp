@@ -14,3 +14,8 @@ sf::IntRect Environment::getSpriteBox(Terrain::TerrainType terrainType) {
 
   return (*terrainSpriteBoxes)[terrainType];
 }
+
+sf::Texture* Environment::getSpritesheet() {
+
+  return spritesheet;
+}

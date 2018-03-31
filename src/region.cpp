@@ -21,7 +21,7 @@ void Region::buildBatch() {
 
   if(environment == NULL) return; //log error too please, this shouldn't happen
 
-  sf::Texture& ss = *(environment->spritesheet);
+  sf::Texture& ss = *(environment->getSpritesheet());
   batch = new swift::SpriteBatch(ss, width * height);
 
   staticSprites = new std::vector<swift::Sprite>();
@@ -36,9 +36,9 @@ void Region::buildBatch() {
 
     for(x = (y->begin() + left); x <= xLimit + 1; x++) {
 
-      swift::Sprite temp(batch, environment->getSpriteBox( x->getTerrainType() ));
+      swift::Sprite temp(*batch, environment->getSpriteBox( x->getTerrainType() ));
       
-      staticSprites.push_back(temp);
+      staticSprites->push_back(temp);
     }
   }
 }
