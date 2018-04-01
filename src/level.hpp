@@ -27,7 +27,7 @@ public:
   ~Level();
   
   void update(double dticks); // in ticks mind you!
-  void render(double dtime);  // in seconds mind you!
+  void render(double dtime, sf::RenderWindow& window);  // in seconds mind you!
   
 private:
 

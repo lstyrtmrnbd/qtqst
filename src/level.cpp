@@ -21,3 +21,11 @@ Level::~Level() {
   delete cells;
   delete entities;
 }
+
+void Level::render(double dtime, sf::RenderWindow& window) {
+
+  for(auto it = regions->begin(); it != regions->end(); it++) {
+
+    it->render(dtime, window);
+  }
+}

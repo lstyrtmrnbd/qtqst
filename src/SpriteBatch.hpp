@@ -10,26 +10,27 @@
 
 #include <array>
 #include <vector>
+#include <iostream>
 
 namespace swift
 {
-        class SpriteBatch : public sf::Drawable
-        {
-                public:
-                        SpriteBatch(const sf::Texture& tex, unsigned int s);
+  class SpriteBatch : public sf::Drawable {
+    
+  public:
+    SpriteBatch(const sf::Texture& tex, unsigned int s);
                         
-                        const std::vector<sf::Vertex>& getVertices() const;
+    const std::vector<sf::Vertex>& getVertices() const;
 
-                        std::array<sf::Vertex*, 4> addSprite();
-                        sf::Vector2u getTextureSize() const;
+    std::array<sf::Vertex*, 4> addSprite();
+    sf::Vector2u getTextureSize() const;
 
-                private:
-                        virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+  private:
+    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
-                        std::vector<sf::Vertex> vertices;
-                        const sf::Texture& texture;
-                        unsigned int spriteNum;
-        };
+    std::vector<sf::Vertex> vertices;
+    const sf::Texture& texture;
+    unsigned int spriteNum;
+  };
 }
 
 #endif // SPRITEBATCH_HPP

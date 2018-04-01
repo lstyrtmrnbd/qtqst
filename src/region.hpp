@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <iterator>
+#include <iostream>
 
 #include "cell.hpp"
 #include "environment.hpp"
@@ -16,21 +17,20 @@
  * -Holds pointers to entities that exist in its cells, so it can render them
  * -    this is maintained by Level.update() of its parent level
  */
-
 class Region {
 
 public:
 
-  Region(int left, int top, int right, int bottom);
+  Region(int left, int top, int right, int bottom, std::vector<std::vector<Cell>>* cells);
 
   ~Region();
 
-  void setEnvironment(Environment*);
+  void setEnvironment(Environment* environment);
   bool isActive();
   void buildBatch(); // consults environment to fill batch
 
   void update(double dticks);
-  void render(double dtime);
+  void render(double dtime, sf::RenderWindow& window);
   
 private:
 
