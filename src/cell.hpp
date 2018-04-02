@@ -1,6 +1,8 @@
 #ifndef CELL_INCLUDE
 #define CELL_INCLUDE
 
+#include <iostream>
+
 #include "terrain.hpp"
 #include "inhabitant.hpp"
 
@@ -18,6 +20,7 @@ public:
   void push(Inhabitant* inhab);
   Inhabitant* pop();
 
+  void announceSelf();
 
 private:
 

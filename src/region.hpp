@@ -35,6 +35,7 @@ public:
 private:
 
   // these are the subscripts into the cell array that define the region
+  // the origin is in the top left, so right > left & bottom > top
   int left;
   int top;
   int right;

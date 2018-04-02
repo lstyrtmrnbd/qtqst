@@ -5,16 +5,20 @@ LevelPainter::LevelPainter(ExistentEnvironments* environments): environments(env
 }
 
 Level* LevelPainter::paintEmptyLevel(int width, int height) {
-
-  std::vector<std::vector<Cell>>* cells;
   
   Terrain terrain(Terrain::TerrainType::grass); // grass is the "default" terrain
   
-  cells = new std::vector<std::vector<Cell>>(height, std::vector<Cell>(width, Cell(terrain)));
+  std::vector<std::vector<Cell>>* pCells = new std::vector<std::vector<Cell>>(height, std::vector<Cell>(width, Cell(terrain)));
+
+  Cell derefTest = (*pCells)[0][0];
+  derefTest.announceSelf();
+
+  derefTest = (*pCells)[16][16];
+  derefTest.announceSelf();
 
   std::cout << "The grid was initialized" << "\n";
 
-  std::vector<Region>* regions = new std::vector<Region>(1, Region(0, 0, width, height, cells));
+  std::vector<Region>* regions = new std::vector<Region>(1, Region(0, 0, width, height, pCells));
 
   std::cout << "The Region was constructed" << "\n";
 
@@ -26,5 +30,5 @@ Level* LevelPainter::paintEmptyLevel(int width, int height) {
 
   std::cout << "The Region was painted" << "\n";
   
-  Level* newLevel = new Level(cells, regions);
+  Level* newLevel = new Level(pCells, regions);
 }

@@ -59,7 +59,7 @@ int main() {
 
     window.setView(playerView); //need to call setView everytime the view changes
     
-    currentLevel->render(dt.asSeconds(), window);
+    //currentLevel->render(dt.asSeconds(), window);
     
     window.clear();
     window.draw(shape);

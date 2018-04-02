@@ -42,21 +42,43 @@ void Region::buildBatch() {
   staticSprites = new std::vector<swift::Sprite>();
 
   std::cout << "The staticSprite vector is initialized" << "\n";
-  
-  std::vector<std::vector<Cell>>::iterator y; // dereference to get a vector<Cell> row
-  std::vector<Cell>::iterator x;              // dereference to get a Cell
+
+  std::cout << "Values used by iteration: top: " << top << " left: " << left
+            << " bot: " << bottom << " right: " << right << "\n";
+
+  std::vector<std::vector<Cell>>::iterator yStart = cells->begin() + top; // dereference to get a vector<Cell> row
+  std::vector<Cell>::iterator xStart = yStart->begin() + left;                 // dereference to get a Cell
 
   std::vector<std::vector<Cell>>::iterator yLimit = cells->begin() + bottom;
   std::vector<Cell>::iterator xLimit = yLimit->begin() + right;
+
+  std::cout << "Iterators initialized" << "\n";
   
-  for(y = (cells->begin() + top); y <= yLimit - 1; y++) {
+  for(auto y = yStart; y != yLimit; ++y) {
 
-    for(x = (y->begin() + left); x <= xLimit - 1; x++) {
+    int yCount = std::distance(cells->begin(), y);
+    //std::cout << "Exterior iteration: " << yCount << "\n";
 
-      swift::Sprite temp(*batch, environment->getSpriteBox( x->getTerrainType() ));
-      //set sprite position
+    for(auto x = xStart; x != xLimit; ++x) {
+
+      int xCount = std::distance(y->begin(), x);
+      //std::cout << "Interior iteration: " << xCount << "\n";
+
+      x->announceSelf();
+
+      //std::cout << "cells exists" << "\n";
       
-      staticSprites->push_back(temp);
+      //Cell& tmpCell = cells->at(yCount).at(xCount);
+
+      Terrain::TerrainType cellType = x->getTerrainType();
+
+      //std::cout << "Not segfaulting on 'x' dereference" << "\n";
+
+      //swift::Sprite temp(*batch, environment->getSpriteBox(cellType));
+      
+      //set sprite position!!
+      
+      //staticSprites->push_back(temp);
     }
   }
 }
