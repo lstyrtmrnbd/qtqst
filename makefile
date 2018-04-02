@@ -1,5 +1,5 @@
 CC = g++
-DEVCFLAGS = -std=c++11 -Wall -Wextra -Werror -ggdb
+DEVCFLAGS = -std=c++11 -Wpedantic -Wall -Wextra -Werror -ggdb -O0
 
 LDFLAGS = -lsfml-graphics -lsfml-window -lsfml-system
 
