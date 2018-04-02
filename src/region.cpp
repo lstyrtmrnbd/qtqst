@@ -6,7 +6,7 @@ Region::Region(int left, int top, int right, int bottom,
 
   environment = NULL;
   width = right - left;
-  height = top - bottom;
+  height = bottom - top;
 }
 
 Region::~Region() {
@@ -21,8 +21,8 @@ std::ostream& operator<<(std::ostream &out, const Region &region) {
 
   return out << "Region at (" << region.left << ", " << region.top
              << ") of size (" << region.width << ", " << region.height << ")\n"
-             << "Its environment pointer is " << envValid << "\n"
-             << "Its pointer to parent level cells is " << cellsValid << "\n"; 
+             << " -environment pointer is " << envValid << "\n"
+             << " -pointer to parent level cells is " << cellsValid << "\n"; 
 }
 
 bool Region::isActive() {
@@ -44,19 +44,10 @@ void Region::buildBatch() {
   }
 
   sf::Texture& ss = *(environment->getSpritesheet());
-
-  std::cout << "A convenience reference?" << "\n";
   
   batch = new swift::SpriteBatch(ss, 2);
 
-  std::cout << "The Region's batch is made" << "\n";
-
   staticSprites = new std::vector<swift::Sprite>();
-
-  std::cout << "The staticSprite vector is initialized" << "\n";
-
-  std::cout << "Values used by iteration: top: " << top << " left: " << left
-            << " bot: " << bottom << " right: " << right << "\n";
 
   std::vector<std::vector<Cell>>::iterator yStart = cells->begin() + top; // dereference to get a vector<Cell> row
   std::vector<Cell>::iterator xStart = yStart->begin() + left;                 // dereference to get a Cell
@@ -64,12 +55,13 @@ void Region::buildBatch() {
   std::vector<std::vector<Cell>>::iterator yLimit = cells->begin() + bottom;
   std::vector<Cell>::iterator xLimit = yLimit->begin() + right;
 
-  std::cout << "Iterators initialized" << "\n";
+  std::cout << "Values used by iteration: top: " << top << " left: " << left
+            << " bot: " << bottom << " right: " << right << "\n";
   
   for(auto y = yStart; y != yLimit; ++y) {
 
     int yCount = std::distance(cells->begin(), y);
-    //std::cout << "Exterior iteration: " << yCount << "\n";
+    std::cout << "Exterior iteration: " << yCount << "\n";
 
     for(auto x = xStart; x != xLimit; ++x) {
 
@@ -82,7 +74,7 @@ void Region::buildBatch() {
       
       //Cell& tmpCell = cells->at(yCount).at(xCount);
 
-      Terrain::TerrainType cellType = x->getTerrainType();
+      //Terrain::TerrainType cellType = x->getTerrainType();
 
       //std::cout << "Not segfaulting on 'x' dereference" << "\n";
 

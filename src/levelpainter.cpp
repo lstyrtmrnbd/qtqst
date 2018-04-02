@@ -13,18 +13,18 @@ Level* LevelPainter::paintEmptyLevel(int width, int height) {
   Cell derefTest = (*pCells)[0][0];
   derefTest.announceSelf();
 
+  std::cout << "Checking cell at 16,16" << "\n";
+  
   derefTest = (*pCells)[16][16];
-  derefTest.announceSelf();
+  Terrain::TerrainType segTest = derefTest.getTerrainType();
 
   std::cout << "The grid was initialized" << "\n";
 
   std::vector<Region>* regions = new std::vector<Region>(1, Region(0, 0, width, height, pCells));
 
-  std::cout << "The Region was constructed" << "\n";
-
   regions->front().setEnvironment(environments->defaultEnvironment);
 
-  std::cout << "The environment was set" << "\n";
+  std::cout << regions->front();
 
   RegionPainter::paintEmptyRegion(regions->front());
 
