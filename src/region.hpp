@@ -31,6 +31,8 @@ public:
 
   void update(double dticks);
   void render(double dtime, sf::RenderWindow& window);
+
+  friend std::ostream& operator<<(std::ostream&, const Region&);
   
 private:
 

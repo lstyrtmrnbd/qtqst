@@ -1,6 +1,7 @@
 #include "region.hpp"
 
-Region::Region(int left, int top, int right, int bottom, std::vector<std::vector<Cell>>*):
+Region::Region(int left, int top, int right, int bottom,
+               std::vector<std::vector<Cell>>* cells):
   left(left), top(top), right(right), bottom(bottom), cells(cells) {
 
   environment = NULL;
@@ -11,6 +12,17 @@ Region::Region(int left, int top, int right, int bottom, std::vector<std::vector
 Region::~Region() {
 
   //delete batch; // ??
+}
+
+std::ostream& operator<<(std::ostream &out, const Region &region) {
+
+  std::string envValid = (region.environment != NULL ? "valid" : "invalid");
+  std::string cellsValid = (region.cells != NULL ? "valid" : "invalid");
+
+  return out << "Region at (" << region.left << ", " << region.top
+             << ") of size (" << region.width << ", " << region.height << ")\n"
+             << "Its environment pointer is " << envValid << "\n"
+             << "Its pointer to parent level cells is " << cellsValid << "\n"; 
 }
 
 bool Region::isActive() {
@@ -64,7 +76,7 @@ void Region::buildBatch() {
       int xCount = std::distance(y->begin(), x);
       //std::cout << "Interior iteration: " << xCount << "\n";
 
-      x->announceSelf();
+      //x->announceSelf();
 
       //std::cout << "cells exists" << "\n";
       
