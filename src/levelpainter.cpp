@@ -11,20 +11,18 @@ Level* LevelPainter::paintEmptyLevel(int width, int height) {
   std::vector<std::vector<Cell>>* pCells = new std::vector<std::vector<Cell>>(height, std::vector<Cell>(width, Cell(terrain)));
 
   Cell derefTest = (*pCells)[0][0];
-  derefTest.announceSelf();
 
-  std::cout << "Checking cell at 16,16" << "\n";
-  
+  std::cout << derefTest;
+
   derefTest = (*pCells)[16][16];
-  Terrain::TerrainType segTest = derefTest.getTerrainType();
 
-  std::cout << "The grid was initialized" << "\n";
-
+  std::cout << derefTest;
+  
   std::vector<Region>* regions = new std::vector<Region>(1, Region(0, 0, width, height, pCells));
 
   regions->front().setEnvironment(environments->defaultEnvironment);
 
-  std::cout << regions->front();
+  std::cout << regions->front(); // DBG
 
   RegionPainter::paintEmptyRegion(regions->front());
 

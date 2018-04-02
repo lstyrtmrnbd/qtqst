@@ -20,7 +20,7 @@ public:
   void push(Inhabitant* inhab);
   Inhabitant* pop();
 
-  void announceSelf();
+  friend std::ostream& operator<<(std::ostream&, const Cell&);
 
 private:
 

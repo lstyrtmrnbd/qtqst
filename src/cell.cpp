@@ -2,8 +2,6 @@
 
 Cell::Cell(Terrain terrain): terrain(terrain) {
 
-  std::cout << "Hi, I'm a new Cell. Please treat me well." << "\n";
-
 }
 
 Terrain::TerrainType Cell::getTerrainType() {
@@ -11,7 +9,7 @@ Terrain::TerrainType Cell::getTerrainType() {
   return terrain.terrainType;
 }
 
-void Cell::announceSelf() {
+std::ostream& operator<<(std::ostream &out, const Cell &cell) {
 
-  std::cout << "Hi i'm a cell." << "\n";
+  return out << "Cell containing: \n" << cell.terrain;
 }

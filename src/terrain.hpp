@@ -21,7 +21,9 @@ public:
   ~Terrain();
 
   TerrainType terrainType;
-   
+
+  friend std::ostream& operator<<(std::ostream&, const Terrain&);
+  
 private:
 
 };
