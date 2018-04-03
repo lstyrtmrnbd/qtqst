@@ -18,9 +18,6 @@ class Level {
 
 public:
 
-  int width;
-  int height;
-
   // initialize a level with a premade cell grid and region assignments
   Level(std::vector<std::vector<Cell>>*, std::vector<Region>*);
   
@@ -28,8 +25,13 @@ public:
   
   void update(double dticks); // in ticks mind you!
   void render(double dtime, sf::RenderWindow& window);  // in seconds mind you!
+
+  friend std::ostream& operator<<(std::ostream&, const Level&);
   
 private:
+  
+  int width;
+  int height;
 
   std::vector<std::vector<Cell>>* cells;
   std::vector<Entity>* entities;   // everything that *lives* in the level goes here 

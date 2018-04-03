@@ -36,7 +36,9 @@ int main() {
   
   Level* currentLevel = levelPainter->paintEmptyLevel(64, 32);
 
-  std::cout << "The currentLevel was painted" << "\n";
+  std::cout << "The currentLevel was painted, it's now:" << "\n";
+
+  std::cout << *currentLevel;
   
   sf::CircleShape shape(100.f);
   shape.setFillColor(sf::Color::Green);

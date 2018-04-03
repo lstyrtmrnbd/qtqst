@@ -29,3 +29,26 @@ void Level::render(double dtime, sf::RenderWindow& window) {
     it->render(dtime, window);
   }
 }
+
+std::ostream& operator<<(std::ostream &out, const Level &level) {
+
+  int w;
+  int h;
+  const char* cellsValid;
+  
+  if(level.cells != NULL) {
+
+    cellsValid = "valid";
+    w = level.cells->front().size();
+    h = level.cells->size();
+  } else {
+    
+    cellsValid = "invalid";
+    w = 0; h = 0;
+  }
+
+  return out << "Level of size (" << w << ", " << h << ")\n"
+             << " -contains a " << cellsValid << " cell grid pointer\n"
+             << " -subdivided into " << (level.regions != NULL ? level.regions->size() : 0) << " regions\n"
+             << " -and " << (level.entities != NULL ? level.entities->size() : 0) << " entities\n";
+}
