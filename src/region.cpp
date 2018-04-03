@@ -50,26 +50,17 @@ void Region::buildBatch() {
   
   batch = new swift::SpriteBatch(ss, width * height);
 
-  staticSprites = new std::vector<swift::Sprite>(width * height);
+  staticSprites = new std::vector<swift::Sprite>();
 
   std::vector<std::vector<Cell>>::iterator yStart = cells->begin() + top; // dereference to get a vector<Cell> row
-  std::vector<Cell>::iterator xStart = yStart->begin() + left;            // dereference to get a Cell
-
   std::vector<std::vector<Cell>>::iterator yLimit = cells->begin() + bottom;
-  std::vector<Cell>::iterator xLimit = yLimit->begin() + right;
-
-  std::cout << "Values used by iteration:"
-            << "\n yStart: " << std::distance(cells->begin(), yStart)
-            << "\n xStart: " << std::distance(yStart->begin(), xStart)
-            << "\n yLimit: " << std::distance(cells->begin(), yLimit)
-            << "\n xLimit: " << std::distance(yLimit->begin(), xLimit) << "\n"; // DBG
   
-  for(auto y = yStart; y <= yLimit; ++y) {
+  for(auto y = yStart; y < yLimit; ++y) {
 
     int yCount = std::distance(cells->begin(), y);
     //std::cout << "Exterior iteration: " << yCount << "\n";
 
-    for(auto x = xStart; x <= xLimit; ++x) {
+    for(auto x = (y->begin() + left); x < (y->begin() + right); ++x) {
 
       int xCount = std::distance(y->begin(), x);
 
@@ -83,11 +74,13 @@ void Region::buildBatch() {
 
       temp.setPosition({xPos,yPos});
 
-      std::cout << "Sprite at pos " << xPos << ", " << yPos << "\n"; // DBG
+      //std::cout << "Sprite at pos " << xPos << ", " << yPos << "\n"; // DBG
       
       staticSprites->push_back(temp);
     }
   }
+
+  std::cout << "staticSprites holds " << staticSprites->size() << " sprites\n";
 }
 
 void Region::render(double dtime, sf::RenderWindow &window) {
