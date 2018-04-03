@@ -9,27 +9,28 @@
 
 double secondsPerTick = 0.5;
 
+const char *defaultTileset = "assets/technotiles.png";
+
 int main() {
   
   sf::RenderWindow window(sf::VideoMode(640, 480), "qtqst under construction");
 
-  std::cout << "It got this far" << "\n";
-  
   sf::View playerView(sf::Vector2f(0, 0), sf::Vector2f(640, 480));
 
   sf::Texture* defaultSpritesheet = new sf::Texture();
-  if(!defaultSpritesheet->loadFromFile("assets/technotiles.png")) {
+  
+  if(!defaultSpritesheet->loadFromFile(defaultTileset)) {
 
-    std::cout << "It didn't load." << "\n";
+    std::cout << defaultTileset << " failed to load" << "\n";
+  } else {
+    std::cout << defaultTileset << " loaded succesfully" << "\n";
   }
 
-  std::cout << "The texture loaded" << "\n";
-  
-  ExistentEnvironments* environs = new ExistentEnvironments(defaultSpritesheet);
+  ExistentEnvironments *environs = new ExistentEnvironments(defaultSpritesheet);
 
   std::cout << "Environments initialized" << "\n";
 
-  LevelPainter* levelPainter = new LevelPainter(environs);
+  LevelPainter *levelPainter = new LevelPainter(environs);
 
   std::cout << "LevelPainter initialized" << "\n";
   
@@ -59,7 +60,7 @@ int main() {
 
     window.setView(playerView); //need to call setView everytime the view changes
     
-    //currentLevel->render(dt.asSeconds(), window);
+    currentLevel->render(dt.asSeconds(), window);
     
     window.clear();
     window.draw(shape);

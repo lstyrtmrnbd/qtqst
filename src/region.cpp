@@ -5,6 +5,7 @@ Region::Region(int left, int top, int right, int bottom,
   left(left), top(top), right(right), bottom(bottom), cells(cells) {
 
   environment = NULL;
+  
   width = right - left;
   height = bottom - top;
 }
@@ -50,7 +51,7 @@ void Region::buildBatch() {
   staticSprites = new std::vector<swift::Sprite>();
 
   std::vector<std::vector<Cell>>::iterator yStart = cells->begin() + top; // dereference to get a vector<Cell> row
-  std::vector<Cell>::iterator xStart = yStart->begin() + left;                 // dereference to get a Cell
+  std::vector<Cell>::iterator xStart = yStart->begin() + left;            // dereference to get a Cell
 
   std::vector<std::vector<Cell>>::iterator yLimit = cells->begin() + bottom;
   std::vector<Cell>::iterator xLimit = yLimit->begin() + right;
@@ -58,36 +59,31 @@ void Region::buildBatch() {
   std::cout << "Values used by iteration: top: " << top << " left: " << left
             << " bot: " << bottom << " right: " << right << "\n";
   
-  for(auto y = yStart; y != yLimit; ++y) {
+  for(auto y = yStart; y <= yLimit; ++y) {
 
     int yCount = std::distance(cells->begin(), y);
-    std::cout << "Exterior iteration: " << yCount << "\n";
+    //std::cout << "Exterior iteration: " << yCount << "\n";
 
-    for(auto x = xStart; x != xLimit; ++x) {
+    for(auto x = xStart; x <= xLimit; ++x) {
 
       int xCount = std::distance(y->begin(), x);
-      //std::cout << "Interior iteration: " << xCount << "\n";
 
-      //x->announceSelf();
+      Terrain::TerrainType cellType = x->getTerrainType();
 
-      //std::cout << "cells exists" << "\n";
+      swift::Sprite temp(*batch, environment->getSpriteBox(cellType));
+
+      sf::FloatRect localCoords = temp.getLocalBounds();
+      float xPos = xCount * localCoords.width;
+      float yPos = yCount * localCoords.height;
+
+      temp.setPosition({xPos,yPos});
       
-      //Cell& tmpCell = cells->at(yCount).at(xCount);
-
-      //Terrain::TerrainType cellType = x->getTerrainType();
-
-      //std::cout << "Not segfaulting on 'x' dereference" << "\n";
-
-      //swift::Sprite temp(*batch, environment->getSpriteBox(cellType));
-      
-      //set sprite position!!
-      
-      //staticSprites->push_back(temp);
+      staticSprites->push_back(temp);
     }
   }
 }
 
-void Region::render(double dtime, sf::RenderWindow& window) {
+void Region::render(double dtime, sf::RenderWindow &window) {
 
   window.draw(*batch);
 }

@@ -4,9 +4,7 @@ namespace swift
 {
   SpriteBatch::SpriteBatch(const sf::Texture& tex, unsigned int s): texture(tex), spriteNum(0) {
 
-    std::cout << "Does it get to this point?" << "\n";
-    vertices = std::vector<sf::Vertex>(s * 4);
-    std::cout << "This allocation failed with big numbers" << "\n";
+    vertices = std::vector<sf::Vertex>(s * 4); // this allocation failed @ s = 2048
                                                  
     sf::Vector2f texSize = static_cast<sf::Vector2f>(texture.getSize());
 

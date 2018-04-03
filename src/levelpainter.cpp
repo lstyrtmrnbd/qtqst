@@ -1,6 +1,6 @@
 #include "levelpainter.hpp"
 
-LevelPainter::LevelPainter(ExistentEnvironments* environments): environments(environments) {
+LevelPainter::LevelPainter(ExistentEnvironments *environments): environments(environments) {
   
 }
 
@@ -9,14 +9,6 @@ Level* LevelPainter::paintEmptyLevel(int width, int height) {
   Terrain terrain(Terrain::TerrainType::grass); // grass is the "default" terrain
   
   std::vector<std::vector<Cell>>* pCells = new std::vector<std::vector<Cell>>(height, std::vector<Cell>(width, Cell(terrain)));
-
-  Cell derefTest = (*pCells)[0][0];
-
-  std::cout << derefTest;
-
-  derefTest = (*pCells)[16][16];
-
-  std::cout << derefTest;
   
   std::vector<Region>* regions = new std::vector<Region>(1, Region(0, 0, width, height, pCells));
 
@@ -28,5 +20,5 @@ Level* LevelPainter::paintEmptyLevel(int width, int height) {
 
   std::cout << "The Region was painted" << "\n";
   
-  Level* newLevel = new Level(pCells, regions);
+  return new Level(pCells, regions);
 }
