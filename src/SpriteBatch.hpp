@@ -24,6 +24,8 @@ namespace swift
     std::array<sf::Vertex*, 4> addSprite();
     sf::Vector2u getTextureSize() const;
 
+    friend std::ostream& operator<<(std::ostream&, const SpriteBatch&);
+
   private:
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
