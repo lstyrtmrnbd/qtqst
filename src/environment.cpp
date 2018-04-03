@@ -19,3 +19,9 @@ sf::Texture* Environment::getSpritesheet() {
 
   return spritesheet;
 }
+
+std::ostream& operator<<(std::ostream& out, const Environment& environment) {
+
+  return out << "Environment mapping of " << environment.terrainSpriteBoxes->size() << " terrains\n"
+             << " -and a " << (environment.spritesheet != NULL ? "valid" : "invalid") << " spritesheet pointer\n";
+}

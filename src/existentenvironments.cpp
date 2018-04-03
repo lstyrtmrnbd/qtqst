@@ -5,6 +5,6 @@ ExistentEnvironments::ExistentEnvironments(sf::Texture* defaultTexture): default
   defaultEnvironment = new Environment(defaultTexture);
   
   defaultEnvironment->setSpriteBox(Terrain::TerrainType::grass,
-                                   sf::IntRect(96, 1376, 96 + 32, 1376 + 32));
+                                   sf::IntRect(96, 1376, 32, 32));
 
 }

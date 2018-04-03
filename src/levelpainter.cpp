@@ -1,6 +1,6 @@
 #include "levelpainter.hpp"
 
-LevelPainter::LevelPainter(ExistentEnvironments *environments): environments(environments) {
+LevelPainter::LevelPainter(ExistentEnvironments* environments): environments(environments) {
   
 }
 

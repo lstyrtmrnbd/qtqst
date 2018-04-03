@@ -9,13 +9,13 @@
 
 double secondsPerTick = 0.5;
 
-const char *defaultTileset = "assets/technotiles.png";
+const char* defaultTileset = "assets/technotiles.png";
 
 int main() {
   
   sf::RenderWindow window(sf::VideoMode(640, 480), "qtqst under construction");
 
-  sf::View playerView(sf::Vector2f(0, 0), sf::Vector2f(640, 480));
+  sf::View playerView(sf::Vector2f(0, 0), sf::Vector2f(1920, 1080));
 
   sf::Texture* defaultSpritesheet = new sf::Texture();
   
@@ -26,11 +26,11 @@ int main() {
     std::cout << defaultTileset << " loaded succesfully" << "\n";
   }
 
-  ExistentEnvironments *environs = new ExistentEnvironments(defaultSpritesheet);
+  ExistentEnvironments* environs = new ExistentEnvironments(defaultSpritesheet);
 
   std::cout << "Environments initialized" << "\n";
 
-  LevelPainter *levelPainter = new LevelPainter(environs);
+  LevelPainter* levelPainter = new LevelPainter(environs);
 
   std::cout << "LevelPainter initialized" << "\n";
   
@@ -59,11 +59,12 @@ int main() {
     sf::Time dt = clock.restart();
 
     window.setView(playerView); //need to call setView everytime the view changes
+
+    window.clear();
     
     currentLevel->render(dt.asSeconds(), window);
-    
-    window.clear();
     window.draw(shape);
+    
     window.display();
   }
 

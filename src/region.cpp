@@ -44,11 +44,13 @@ void Region::buildBatch() {
     return;
   }
 
+  std::cout << *environment; // DBG
+
   sf::Texture& ss = *(environment->getSpritesheet());
   
-  batch = new swift::SpriteBatch(ss, 2);
+  batch = new swift::SpriteBatch(ss, width * height);
 
-  staticSprites = new std::vector<swift::Sprite>();
+  staticSprites = new std::vector<swift::Sprite>(width * height);
 
   std::vector<std::vector<Cell>>::iterator yStart = cells->begin() + top; // dereference to get a vector<Cell> row
   std::vector<Cell>::iterator xStart = yStart->begin() + left;            // dereference to get a Cell
@@ -56,8 +58,11 @@ void Region::buildBatch() {
   std::vector<std::vector<Cell>>::iterator yLimit = cells->begin() + bottom;
   std::vector<Cell>::iterator xLimit = yLimit->begin() + right;
 
-  std::cout << "Values used by iteration: top: " << top << " left: " << left
-            << " bot: " << bottom << " right: " << right << "\n";
+  std::cout << "Values used by iteration:"
+            << "\n yStart: " << std::distance(cells->begin(), yStart)
+            << "\n xStart: " << std::distance(yStart->begin(), xStart)
+            << "\n yLimit: " << std::distance(cells->begin(), yLimit)
+            << "\n xLimit: " << std::distance(yLimit->begin(), xLimit) << "\n"; // DBG
   
   for(auto y = yStart; y <= yLimit; ++y) {
 
@@ -77,6 +82,8 @@ void Region::buildBatch() {
       float yPos = yCount * localCoords.height;
 
       temp.setPosition({xPos,yPos});
+
+      std::cout << "Sprite at pos " << xPos << ", " << yPos << "\n"; // DBG
       
       staticSprites->push_back(temp);
     }
