@@ -39,6 +39,12 @@ int main() {
   std::cout << "The currentLevel was painted, it's now:" << "\n";
 
   std::cout << *currentLevel;
+
+  std::cout << "Region 0 batch is " << currentLevel->getRegion(0).getBatch();
+
+  std::cout << "First 4 Sprites should be: " << "\n";
+  
+  for(int i = 0; i < 4; i++) std::cout << currentLevel->getRegion(0).getStaticSprite(i);
   
   sf::CircleShape shape(100.f);
   shape.setFillColor(sf::Color::Green);

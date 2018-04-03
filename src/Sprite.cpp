@@ -165,4 +165,13 @@ namespace swift
     
     origin = o;
   }
+
+  std::ostream& operator<<(std::ostream &out, const Sprite &sprite) {
+
+    return out << "Sprite at (" << sprite.getPosition().x << ", " << sprite.getPosition().y << ")\n"
+               << " -scaled by (" << sprite.getScale().x << ", " << sprite.getScale().y << ")\n"
+               << " -origin at (" << sprite.getOrigin().x << ", " << sprite.getOrigin().y << ")\n"
+               << " -based on a textureRect at (" << sprite.getTextureRect().left << ", " << sprite.getTextureRect().top << ")"
+               << " which is of size (" << sprite.getTextureRect().width << ", " << sprite.getTextureRect().height << ")\n";
+  }
 }

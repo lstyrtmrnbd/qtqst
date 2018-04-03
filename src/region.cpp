@@ -36,6 +36,20 @@ void Region::setEnvironment(Environment* environment) {
   this->environment = environment;
 }
 
+swift::SpriteBatch& Region::getBatch() {
+
+  return (*batch);
+}
+
+swift::Sprite& Region::getStaticSprite(unsigned int index) {
+
+  if(index < 0 || index > staticSprites->size()) {
+
+    std::cout << "Region::getStaticSprite index out of bounds, returned first" << "\n";
+    return staticSprites->front();
+  } else return staticSprites->at(index);
+}
+
 void Region::buildBatch() {
 
   if(environment == NULL) {
@@ -87,5 +101,6 @@ void Region::buildBatch() {
 
 void Region::render(double dtime, sf::RenderWindow &window) {
 
+  //std::cout << "Drawing: " << *batch;
   window.draw(*batch);
 }

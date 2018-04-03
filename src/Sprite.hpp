@@ -38,6 +38,8 @@ namespace swift
     void setScale(const sf::Vector2f& scale);
     void setOrigin(const sf::Vector2f& o);
 
+    friend std::ostream& operator<<(std::ostream&, const Sprite&);
+    
   private:
     std::array<sf::Vertex*, 4> vertices;
     sf::Vector2f origin;

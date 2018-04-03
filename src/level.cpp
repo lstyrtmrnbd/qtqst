@@ -30,6 +30,15 @@ void Level::render(double dtime, sf::RenderWindow& window) {
   }
 }
 
+Region& Level::getRegion(unsigned int index) {
+
+  if (index < 0 || index > regions->size()) {
+    
+    std::cout << "Level::getRegion index out of bounds, returned first region" << "\n";
+    return regions->front();
+  } else return regions->at(index);
+}
+
 std::ostream& operator<<(std::ostream &out, const Level &level) {
 
   int w;

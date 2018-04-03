@@ -26,6 +26,8 @@ public:
   void update(double dticks); // in ticks mind you!
   void render(double dtime, sf::RenderWindow& window);  // in seconds mind you!
 
+  Region& getRegion(unsigned int index);
+
   friend std::ostream& operator<<(std::ostream&, const Level&);
   
 private:

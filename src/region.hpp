@@ -28,6 +28,8 @@ public:
   void setEnvironment(Environment* environment);
   bool isActive();
   void buildBatch(); // consults environment to fill batch
+  swift::SpriteBatch& getBatch();
+  swift::Sprite& getStaticSprite(unsigned int index);
 
   void update(double dticks);
   void render(double dtime, sf::RenderWindow& window);
@@ -48,7 +50,7 @@ private:
   
   bool activeRegion = true; // events in this region are being simulated
 
-  std::vector<std::vector<Cell>>* cells; // a reference to its parent Level's cell grid
+  std::vector<std::vector<Cell>>* cells; // a pointer to its parent Level's cell grid
   Environment* environment;              // defines how to get the static sprites for the region
   
   std::vector<swift::Sprite>* staticSprites; // holds the Sprites attached to batch
