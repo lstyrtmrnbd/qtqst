@@ -81,6 +81,8 @@ void Region::buildBatch() {
   }
 
   std::cout << "staticSprites holds " << staticSprites->size() << " sprites\n";
+
+  std::cout << "Region has a " << *batch;
 }
 
 void Region::render(double dtime, sf::RenderWindow &window) {

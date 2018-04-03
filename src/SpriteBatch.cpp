@@ -44,4 +44,10 @@ namespace swift
     states.texture = &texture;
     target.draw(vertices.data(), spriteNum * 4, sf::Quads, states);
   }
+
+  std::ostream& operator<<(std::ostream &out, const SpriteBatch &batch) {
+
+    return out << "SpriteBatch containing " << batch.spriteNum << " sprites\n"
+               << " -from a texture of size (" << batch.getTextureSize().x << ", " << batch.getTextureSize().y << ")\n";
+  }
 }
