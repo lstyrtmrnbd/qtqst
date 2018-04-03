@@ -12,8 +12,8 @@ Level::Level(int width, int height): width(width), height(height) {
 Level::Level(std::vector<std::vector<Cell>>* cells, std::vector<Region>* regions):
   cells(cells), regions(regions) {
 
-  width = cells->size();
-  height = (*cells)[0].size(); // real elegant, lmfao
+  height = cells->size();
+  width = cells->front().size();
 }
 
 Level::~Level() {

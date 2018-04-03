@@ -37,7 +37,6 @@ private:
   std::vector<Entity>* entities;   // everything that *lives* in the level goes here 
   std::vector<Region>* regions;
 
-  // std::vector<swift::Sprite>* staticSprites; // sprites for terrain & buildings
   // animated sprites will be grabbed from each entity upon rendering
 };
 
