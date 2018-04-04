@@ -15,8 +15,8 @@ int main() {
   
   sf::RenderWindow window(sf::VideoMode(640, 480), "qtqst under construction");
 
-  int viewWidth = 2560/2;
-  int viewHeight = 1920/2;
+  int viewWidth = 2560/4;
+  int viewHeight = 1920/4;
   
   sf::View playerView(sf::Vector2f(viewWidth/2, viewHeight/2), sf::Vector2f(viewWidth, viewHeight));
 
