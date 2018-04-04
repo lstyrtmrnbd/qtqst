@@ -122,7 +122,7 @@ namespace swift
     sf::Vector2f topLeft = vertices[0]->position;
                 
     for(auto& v : vertices)
-      v->position = pos + v->position - topLeft - origin; // TRULY SUSPECT
+      v->position = pos + v->position - topLeft - origin; // VERIFIED
   }
 
   void Sprite::setRotation(float a) {

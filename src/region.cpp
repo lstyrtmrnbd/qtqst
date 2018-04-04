@@ -66,10 +66,7 @@ void Region::buildBatch() {
 
   staticSprites = new std::vector<swift::Sprite>();
 
-  std::vector<std::vector<Cell>>::iterator yStart = cells->begin() + top; // dereference to get a vector<Cell> row
-  std::vector<std::vector<Cell>>::iterator yLimit = cells->begin() + bottom;
-  
-  for(auto y = yStart; y < yLimit; ++y) {
+  for(auto y = (cells->begin() + top); y < (cells->begin() + bottom); ++y) {
 
     int yCount = std::distance(cells->begin(), y);
     //std::cout << "Exterior iteration: " << yCount << "\n";
@@ -86,7 +83,7 @@ void Region::buildBatch() {
       float xPos = xCount * localCoords.width;
       float yPos = yCount * localCoords.height;
 
-      temp->setPosition(sf::Vector2f(xPos,yPos));
+      temp->setPosition({xPos,yPos});
 
       //std::cout << "Sprite at pos " << xPos << ", " << yPos << "\n"; // DBG
       
