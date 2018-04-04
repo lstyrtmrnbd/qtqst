@@ -4,6 +4,7 @@
 #include <vector>
 #include <iterator>
 #include <iostream>
+#include <functional>
 
 #include "cell.hpp"
 #include "environment.hpp"
@@ -26,10 +27,18 @@ public:
   ~Region();
 
   void setEnvironment(Environment* environment);
+  void buildBatch(); // consults environment to fill batch with static sprites
+  void doRegionCells(std::function<void(Cell, int, int)>); // cell, cellX, cellY
+
   bool isActive();
-  void buildBatch(); // consults environment to fill batch
   swift::SpriteBatch& getBatch();
   swift::Sprite& getStaticSprite(unsigned int index);
+  std::vector<std::vector<Cell>>* getLevelCells();
+  int getSize();
+  int getLeft();
+  int getTop();
+  int getRight();
+  int getBottom();
 
   void update(double dticks);
   void render(double dtime, sf::RenderWindow& window);

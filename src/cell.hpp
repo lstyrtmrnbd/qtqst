@@ -16,6 +16,7 @@ public:
   Cell(Terrain terrain);
 
   Terrain::TerrainType getTerrainType();
+  void setTerrainType(Terrain::TerrainType);
   
   void push(Inhabitant* inhab);
   Inhabitant* pop();

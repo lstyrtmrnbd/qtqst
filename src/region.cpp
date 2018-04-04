@@ -52,6 +52,36 @@ swift::Sprite& Region::getStaticSprite(unsigned int index) {
   } else return *staticSprites.at(index);
 }
 
+int Region::getSize() {
+
+  return width * height;
+}
+
+int Region::getLeft() {
+
+  return left;
+}
+
+int Region::getTop() {
+
+  return top;
+}
+
+int Region::getRight() {
+
+  return right;
+}
+
+int Region::getBottom() {
+
+  return bottom;
+}
+
+std::vector<std::vector<Cell>>* Region::getLevelCells() {
+
+  return cells;
+}
+
 void Region::buildBatch() {
 
   if(environment == NULL) {
@@ -69,8 +99,7 @@ void Region::buildBatch() {
   for(auto y = (cells->begin() + top); y < (cells->begin() + bottom); ++y) {
 
     int yCount = std::distance(cells->begin(), y);
-    //std::cout << "Exterior iteration: " << yCount << "\n";
-
+    
     for(auto x = (y->begin() + left); x < (y->begin() + right); ++x) {
 
       int xCount = std::distance(y->begin(), x);
@@ -100,4 +129,19 @@ void Region::render(double dtime, sf::RenderWindow &window) {
 
   //std::cout << "Drawing: " << *batch;
   window.draw(*batch);
+}
+
+void Region::doRegionCells(std::function<void(Cell, int, int)> fx) {
+
+  for(auto y = cells->begin() + top; y < cells->begin() + bottom; ++y) {
+
+    int cellY = std::distance(cells->begin(), y);
+
+    for(auto x = y->begin() + left; x < y->begin() + right; ++x) {
+
+      int cellX = std::distance(y->begin(), x);
+
+      fx(*x, cellX, cellY);
+    }
+  }
 }
