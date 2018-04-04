@@ -96,29 +96,18 @@ void Region::buildBatch() {
   
   batch = new swift::SpriteBatch(ss, width * height);
 
-  for(auto y = (cells->begin() + top); y < (cells->begin() + bottom); ++y) {
+  doRegionCells([&](Cell cell, int cellX, int cellY) {
 
-    int yCount = std::distance(cells->begin(), y);
-    
-    for(auto x = (y->begin() + left); x < (y->begin() + right); ++x) {
-
-      int xCount = std::distance(y->begin(), x);
-
-      Terrain::TerrainType cellType = x->getTerrainType();
-
-      swift::Sprite* temp = new swift::Sprite(*batch, environment->getSpriteBox(cellType));
+      swift::Sprite* temp = new swift::Sprite(*batch, environment->getSpriteBox(cell.getTerrainType()));
 
       sf::FloatRect localCoords = temp->getLocalBounds();
-      float xPos = xCount * localCoords.width;
-      float yPos = yCount * localCoords.height;
+      float xPos = cellX * localCoords.width;
+      float yPos = cellY * localCoords.height;
 
-      temp->setPosition({xPos,yPos});
+      temp->setPosition({xPos, yPos});
 
-      //std::cout << "Sprite at pos " << xPos << ", " << yPos << "\n"; // DBG
-      
-      staticSprites.push_back(temp); //SUSPECT
-    }
-  }
+      staticSprites.push_back(temp);
+    });
 
   std::cout << "staticSprites holds " << staticSprites.size() << " sprites\n";
 
