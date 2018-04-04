@@ -57,26 +57,6 @@ int Region::getSize() {
   return width * height;
 }
 
-int Region::getLeft() {
-
-  return left;
-}
-
-int Region::getTop() {
-
-  return top;
-}
-
-int Region::getRight() {
-
-  return right;
-}
-
-int Region::getBottom() {
-
-  return bottom;
-}
-
 std::vector<std::vector<Cell>>* Region::getLevelCells() {
 
   return cells;
