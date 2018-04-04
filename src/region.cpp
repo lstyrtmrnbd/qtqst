@@ -80,17 +80,17 @@ void Region::buildBatch() {
 
       Terrain::TerrainType cellType = x->getTerrainType();
 
-      swift::Sprite temp(*batch, environment->getSpriteBox(cellType));
+      swift::Sprite* temp = new swift::Sprite(*batch, environment->getSpriteBox(cellType));
 
-      sf::FloatRect localCoords = temp.getLocalBounds();
+      sf::FloatRect localCoords = temp->getLocalBounds();
       float xPos = xCount * localCoords.width;
       float yPos = yCount * localCoords.height;
 
-      temp.setPosition({xPos,yPos});
+      temp->setPosition(sf::Vector2f(xPos,yPos));
 
       //std::cout << "Sprite at pos " << xPos << ", " << yPos << "\n"; // DBG
       
-      staticSprites->push_back(temp);
+      staticSprites->push_back(*temp);
     }
   }
 

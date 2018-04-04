@@ -15,7 +15,10 @@ int main() {
   
   sf::RenderWindow window(sf::VideoMode(640, 480), "qtqst under construction");
 
-  sf::View playerView(sf::Vector2f(0, 0), sf::Vector2f(1920, 1080));
+  int viewWidth = 2560;
+  int viewHeight = 1920;
+  
+  sf::View playerView(sf::Vector2f(viewWidth/2, viewHeight/2), sf::Vector2f(viewWidth, viewHeight));
 
   sf::Texture* defaultSpritesheet = new sf::Texture();
   
