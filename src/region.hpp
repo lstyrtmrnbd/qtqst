@@ -28,7 +28,7 @@ public:
 
   void setEnvironment(Environment* environment);
   void buildBatch(); // consults environment to fill batch with static sprites
-  void doRegionCells(std::function<void(Cell, int, int)>); // cell, cellX, cellY
+  void doRegionCells(std::function<void(Cell&, int, int)>); // cell, cellX, cellY
 
   bool isActive();
   swift::SpriteBatch& getBatch();

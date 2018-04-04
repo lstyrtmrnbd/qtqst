@@ -5,6 +5,18 @@ void RegionPainter::paintEmptyRegion(Region &region) {
   // modify cell terrain and then build static sprite batch
 
   // add random dirt patches
+  region.doRegionCells([&](Cell &cell, int cellX, int cellY) {
+
+      const char* rolled;
+      if(everyNth(region.getSize(), 4)) {
+
+        cell.setTerrainType(Terrain::TerrainType::dirt);
+        rolled = "dirt";
+      } else rolled = "grass";
+      
+      
+      std::cout << "Rolled " << rolled << "\n"; 
+    });
 
   // build static sprites
   region.buildBatch();
@@ -12,13 +24,11 @@ void RegionPainter::paintEmptyRegion(Region &region) {
 
 bool RegionPainter::everyNth(int max, int n) {
 
-  return (randomInt(0, max) < max / n);  
+  return (randomInt(0, max) < (max / n));  
 }
 
+// minor bias towards lower values when range is not a power of 2
 int RegionPainter::randomInt(int min, int max) {
 
-  std::default_random_engine engine;
-  std::uniform_int_distribution<int> dist(min, max);
-
-  return dist(engine);
+  return min + (rand() % static_cast<int>(max - min + 1));
 }

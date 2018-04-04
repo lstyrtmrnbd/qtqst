@@ -13,7 +13,6 @@ public:
     grass,
     dirt,
     snow
-
   };
 
   Terrain(TerrainType);

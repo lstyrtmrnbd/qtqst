@@ -9,9 +9,9 @@ Terrain::TerrainType Cell::getTerrainType() {
   return terrain.terrainType;
 }
 
-void Cell::setTerrainType(Terrain::TerrainType newTerrain) {
+void Cell::setTerrainType(Terrain::TerrainType newTerrainType) {
 
-  terrain = newTerrain;
+  terrain.terrainType = newTerrainType;
 }
 
 std::ostream& operator<<(std::ostream &out, const Cell &cell) {

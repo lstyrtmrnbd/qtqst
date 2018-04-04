@@ -76,7 +76,7 @@ void Region::buildBatch() {
   
   batch = new swift::SpriteBatch(ss, width * height);
 
-  doRegionCells([&](Cell cell, int cellX, int cellY) {
+  doRegionCells([&](Cell &cell, int cellX, int cellY) {
 
       swift::Sprite* temp = new swift::Sprite(*batch, environment->getSpriteBox(cell.getTerrainType()));
 
@@ -100,7 +100,7 @@ void Region::render(double dtime, sf::RenderWindow &window) {
   window.draw(*batch);
 }
 
-void Region::doRegionCells(std::function<void(Cell, int, int)> fx) {
+void Region::doRegionCells(std::function<void(Cell&, int, int)> fx) {
 
   for(auto y = cells->begin() + top; y < cells->begin() + bottom; ++y) {
 
