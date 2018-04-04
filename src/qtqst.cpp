@@ -9,7 +9,15 @@
 
 double secondsPerTick = 0.5;
 
-const char* defaultTileset = "assets/technotiles.png";
+const char* defaultTilesetFilename = "assets/technotiles.png";
+
+sf::Texture* defaultSpritesheet;
+
+ExistentEnvironments* environs;
+LevelPainter* levelPainter;
+Level* currentLevel;
+
+InputHandler* handler; 
 
 int main() {
   
@@ -18,53 +26,41 @@ int main() {
   int viewWidth = 2560/4;
   int viewHeight = 1920/4;
   
-  sf::View playerView(sf::Vector2f(viewWidth/2, viewHeight/2), sf::Vector2f(viewWidth, viewHeight));
+  sf::View playerView(sf::Vector2f(viewWidth/2, viewHeight/2),
+                      sf::Vector2f(viewWidth, viewHeight));
 
-  sf::Texture* defaultSpritesheet = new sf::Texture();
+  defaultSpritesheet = new sf::Texture();
   
-  if(!defaultSpritesheet->loadFromFile(defaultTileset)) {
+  if(!defaultSpritesheet->loadFromFile(defaultTilesetFilename)) {
+    std::cout << defaultTilesetFilename << " failed to load" << "\n";
+  } else std::cout << defaultTilesetFilename << " loaded succesfully" << "\n";
 
-    std::cout << defaultTileset << " failed to load" << "\n";
-  } else {
-    std::cout << defaultTileset << " loaded succesfully" << "\n";
-  }
+  environs = new ExistentEnvironments(defaultSpritesheet);
+  levelPainter = new LevelPainter(environs);
 
-  ExistentEnvironments* environs = new ExistentEnvironments(defaultSpritesheet);
-
-  std::cout << "Environments initialized" << "\n";
-
-  LevelPainter* levelPainter = new LevelPainter(environs);
-
-  std::cout << "LevelPainter initialized" << "\n";
+  std::cout << "Singletons started" << "\n";
   
-  Level* currentLevel = levelPainter->paintEmptyLevel(64, 32);
+  currentLevel = levelPainter->paintEmptyLevel(64, 32);
 
-  std::cout << "The currentLevel was painted, it's now:" << "\n";
+  std::cout << "Current level painted: "<< *currentLevel;
 
-  std::cout << *currentLevel;
+  std::cout << "Region 0 batch: " << currentLevel->getRegion(0).getBatch();
 
-  std::cout << "Region 0 batch is " << currentLevel->getRegion(0).getBatch();
-
-  std::cout << "First 4 Sprites should be: " << "\n";
-  
-  for(int i = 0; i < 4; i++) std::cout << currentLevel->getRegion(0).getStaticSprite(i);
-  
   sf::CircleShape shape(100.f);
   shape.setFillColor(sf::Color::Green);
 
   sf::Clock clock;
 
-  InputHandler handler(window, shape);
+  handler = new InputHandler(window, shape); // although this is singleton too
 
   std::cout << "Dropping into primary loop" << "\n";
-
   while (window.isOpen()) {
       
     sf::Event event;
         
     while (window.pollEvent(event)) {
           
-      handler.handleInput(event);
+      handler->handleInput(event);
     }
 
     sf::Time dt = clock.restart();
@@ -72,10 +68,8 @@ int main() {
     window.setView(playerView); //need to call setView everytime the view changes
 
     window.clear();
-    
     currentLevel->render(dt.asSeconds(), window);
     window.draw(shape);
-    
     window.display();
   }
 

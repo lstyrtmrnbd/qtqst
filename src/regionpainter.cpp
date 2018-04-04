@@ -7,15 +7,10 @@ void RegionPainter::paintEmptyRegion(Region &region) {
   // add random dirt patches
   region.doRegionCells([&](Cell &cell, int cellX, int cellY) {
 
-      const char* rolled;
       if(everyNth(region.getSize(), 4)) {
 
         cell.setTerrainType(Terrain::TerrainType::dirt);
-        rolled = "dirt";
-      } else rolled = "grass";
-      
-      
-      std::cout << "Rolled " << rolled << "\n"; 
+      } 
     });
 
   // build static sprites
