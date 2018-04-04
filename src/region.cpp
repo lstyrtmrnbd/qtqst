@@ -8,6 +8,8 @@ Region::Region(int left, int top, int right, int bottom,
   
   width = right - left;
   height = bottom - top;
+
+  staticSprites = std::vector<swift::Sprite*>();
 }
 
 Region::~Region() {
@@ -43,11 +45,11 @@ swift::SpriteBatch& Region::getBatch() {
 
 swift::Sprite& Region::getStaticSprite(unsigned int index) {
 
-  if(index < 0 || index > staticSprites->size()) {
+  if(index < 0 || index > staticSprites.size()) {
 
     std::cout << "Region::getStaticSprite index out of bounds, returned first" << "\n";
-    return staticSprites->front();
-  } else return staticSprites->at(index);
+    return *staticSprites.front();
+  } else return *staticSprites.at(index);
 }
 
 void Region::buildBatch() {
@@ -63,8 +65,6 @@ void Region::buildBatch() {
   sf::Texture& ss = *(environment->getSpritesheet());
   
   batch = new swift::SpriteBatch(ss, width * height);
-
-  staticSprites = new std::vector<swift::Sprite>();
 
   for(auto y = (cells->begin() + top); y < (cells->begin() + bottom); ++y) {
 
@@ -87,11 +87,11 @@ void Region::buildBatch() {
 
       //std::cout << "Sprite at pos " << xPos << ", " << yPos << "\n"; // DBG
       
-      staticSprites->push_back(*temp);
+      staticSprites.push_back(temp); //SUSPECT
     }
   }
 
-  std::cout << "staticSprites holds " << staticSprites->size() << " sprites\n";
+  std::cout << "staticSprites holds " << staticSprites.size() << " sprites\n";
 
   std::cout << "Region has a " << *batch;
 }

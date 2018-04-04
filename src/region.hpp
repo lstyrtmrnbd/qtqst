@@ -53,7 +53,7 @@ private:
   std::vector<std::vector<Cell>>* cells; // a pointer to its parent Level's cell grid
   Environment* environment;              // defines how to get the static sprites for the region
   
-  std::vector<swift::Sprite>* staticSprites; // holds the Sprites attached to batch
+  std::vector<swift::Sprite*> staticSprites; // holds the Sprites attached to batch
   swift::SpriteBatch* batch;                 // holds the static SpriteBatch, drawn in render()
 
 };
