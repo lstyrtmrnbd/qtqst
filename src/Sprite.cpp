@@ -17,7 +17,17 @@ namespace swift
     vertices[3]->position = {0, static_cast<float>(texSize.y)};
   }
 
-  Sprite::Sprite(SpriteBatch& batch, const sf::IntRect& texRect): Sprite(batch) {
+  Sprite::Sprite(SpriteBatch& batch, const sf::IntRect& texRect): origin(0, 0), scaleFactor(1, 1), angle(0) {
+
+    vertices = batch.addSprite();
+
+    if(vertices[0] == nullptr) throw nullptr;
+
+    vertices[0]->position = {0, 0};
+    vertices[1]->position = {static_cast<float>(texRect.width), 0};
+    vertices[2]->position = {static_cast<float>(texRect.width), static_cast<float>(texRect.height)};
+    vertices[3]->position = {0, static_cast<float>(texRect.height)};
+    
     vertices[0]->texCoords = {static_cast<float>(texRect.left), static_cast<float>(texRect.top)};
     vertices[1]->texCoords = {static_cast<float>(texRect.left) + static_cast<float>(texRect.width), static_cast<float>(texRect.top)};
     vertices[2]->texCoords = {static_cast<float>(texRect.left) + static_cast<float>(texRect.width), static_cast<float>(texRect.top) + static_cast<float>(texRect.height)};
@@ -112,7 +122,7 @@ namespace swift
     sf::Vector2f topLeft = vertices[0]->position;
                 
     for(auto& v : vertices)
-      v->position = pos + v->position - topLeft - origin;
+      v->position = pos + v->position - topLeft - origin; // TRULY SUSPECT
   }
 
   void Sprite::setRotation(float a) {
