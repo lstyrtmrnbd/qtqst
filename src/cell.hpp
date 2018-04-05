@@ -18,15 +18,15 @@ public:
   Terrain::TerrainType getTerrainType();
   void setTerrainType(Terrain::TerrainType);
   
-  void push(Inhabitant* inhab);
-  Inhabitant* pop();
+  void push(Entity* entity);
+  Entity* pop();
 
   friend std::ostream& operator<<(std::ostream&, const Cell&);
 
 private:
 
   Terrain terrain;
-  std::vector<Inhabitant*> inhabitants;
+  std::vector<Entity*> entities;
 };
 
 #endif // CELL_INCLUDE

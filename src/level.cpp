@@ -14,6 +14,8 @@ Level::Level(std::vector<std::vector<Cell>>* cells, std::vector<Region>* regions
 
   height = cells->size();
   width = cells->front().size();
+
+  entities = new std::vector<Entity>();
 }
 
 Level::~Level() {

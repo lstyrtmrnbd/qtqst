@@ -17,6 +17,7 @@ void RegionPainter::paintEmptyRegion(Region &region) {
   region.buildBatch();
 }
 
+// statistically speaking...
 bool RegionPainter::everyNth(int max, int n) {
 
   return (randomInt(0, max) < (max / n));  
