@@ -7,7 +7,7 @@ void RegionPainter::paintEmptyRegion(Region &region) {
   // add random dirt patches
   region.doRegionCells([&](Cell &cell, int cellX, int cellY) {
 
-      if(everyNth(region.getSize(), 4)) {
+      if(everyNth(4)) {
 
         cell.setTerrainType(Terrain::TerrainType::dirt);
       } 
@@ -18,9 +18,9 @@ void RegionPainter::paintEmptyRegion(Region &region) {
 }
 
 // statistically speaking...
-bool RegionPainter::everyNth(int max, int n) {
+bool RegionPainter::everyNth(int n) {
 
-  return (randomInt(0, max) < (max / n));  
+  return (randomInt(0, n) < 1);  
 }
 
 // minor bias towards lower values when range is not a power of 2

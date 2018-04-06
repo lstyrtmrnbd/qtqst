@@ -12,7 +12,7 @@ public:
 private:
 
   static int randomInt(int min, int max); // add a seed input if necessary
-  static bool everyNth(int max, int div);
+  static bool everyNth(int n);
   
 };
 
