@@ -13,7 +13,7 @@ public:
 
   MoveSpirit(Cell* currentCell);
   void move(double dticks); //called during update to progress movement
-  double getMovementProgress(); // whatever's in charge of drawing me will want to know 
+  double getMovementProgress(); // whatever's in charge of drawing will want to know 
   
 private:
 

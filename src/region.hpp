@@ -36,6 +36,7 @@ public:
   swift::Sprite& getStaticSprite(unsigned int index);
   std::vector<std::vector<Cell>>* getLevelCells();
   int getSize();
+  Cell& getCellRelative(int x, int y);
 
   void update(double dticks);
   void render(double dtime, sf::RenderWindow& window);

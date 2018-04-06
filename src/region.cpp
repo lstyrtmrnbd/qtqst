@@ -52,16 +52,26 @@ swift::Sprite& Region::getStaticSprite(unsigned int index) {
   } else return *staticSprites.at(index);
 }
 
-int Region::getSize() {
-
-  return width * height;
-}
-
 std::vector<std::vector<Cell>>* Region::getLevelCells() {
 
   return cells;
 }
 
+int Region::getSize() {
+
+  return width * height;
+}
+
+Cell& Region::getCellRelative(int x, int y) {
+
+  int relX = x + left;
+  int relY = y + top;
+
+  if(relX > right || relY > bottom)
+    std::cout << "Accessing beyond region bounds!\n";
+  
+  return (*cells)[y + top][x + left];
+}
 void Region::buildBatch() {
 
   if(environment == NULL) {
