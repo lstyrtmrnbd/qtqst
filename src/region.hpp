@@ -7,6 +7,7 @@
 #include <functional>
 
 #include "cell.hpp"
+#include "entity.hpp"
 #include "environment.hpp"
 #include "SpriteBatch.hpp"
 #include "Sprite.hpp"

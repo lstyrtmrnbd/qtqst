@@ -1,19 +1,23 @@
-#ifndef INHABITANT_INCLUDE
-#define INHABITANT_INCLUDE
+#ifndef MOVESPIRIT_INCLUDE
+#define MOVESPIRIT_INCLUDE
+
+#include "cell.hpp"
+#include "entity.hpp"
 
 /**
  *These things live in Cells and move between them
  */
-class Inhabitant {
+class MoveSpirit {
 
 public:
 
-  Inhabitant(Cell* currentCell);
+  MoveSpirit(Cell* currentCell);
   void move(double dticks); //called during update to progress movement
   double getMovementProgress(); // whatever's in charge of drawing me will want to know 
   
 private:
 
+  Entity* entity;
   Cell* targetCell;
   Cell* nextCell;
   Cell* currentCell;
@@ -23,4 +27,4 @@ private:
   
 };
 
-#endif // INHABITANT_INCLUDE
+#endif // MOVESPIRIT_INCLUDE

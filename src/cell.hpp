@@ -4,7 +4,7 @@
 #include <iostream>
 
 #include "terrain.hpp"
-#include "inhabitant.hpp"
+#include "entity.hpp"
 
 /**
  * -Holds a terrain, and a list of pointers to its current inhabitants

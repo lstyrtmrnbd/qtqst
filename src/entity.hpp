@@ -3,7 +3,7 @@
 
 #include "cell.hpp"
 
-class Entity : public Inhabitant {
+class Entity {
 
 public:
 
