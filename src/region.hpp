@@ -17,15 +17,16 @@
  * -    but should only ever operate within its own defined subscripts! 
  * -Holds info for rendering terrain in the cells it references
  * ---
- * -Holds pointers to entities that exist in its cells, so it can render them
- * -    this is maintained by Level.update() of its parent level
+ * -Holds pointers to entities that exist in its cells, so it can render them?
+ * -    this is maintained by Level.update() of its parent level?
  * -Rather it could just access them out of the cells...
  */
 class Region {
 
 public:
 
-  Region(int left, int top, int right, int bottom, std::vector<std::vector<Cell>>* cells);
+  Region(int left, int top, int right, int bottom,
+         std::vector<std::vector<Cell>>* cells);
 
   ~Region();
 
@@ -39,7 +40,7 @@ public:
   std::vector<std::vector<Cell>>* getLevelCells();
   int getWidth();
   int getHeight();
-  Cell& getCellRelative(int x, int y); // eg. 0,0 is top left of region
+  Cell& getCellRelative(int x, int y); // eg. (0,0) is top left of region
 
   void update(double dticks);
   void render(double dtime, sf::RenderWindow& window);
@@ -61,10 +62,10 @@ private:
   bool activeRegion = true; // events in this region are being simulated
 
   std::vector<std::vector<Cell>>* cells; // a pointer to its parent Level's cell grid
-  Environment* environment;              // defines how to get the static sprites for the region
+  Environment* environment;              // defines the local terrain : sprites mapping
   
   std::vector<swift::Sprite*> staticSprites; // holds the Sprites attached to batch
-  swift::SpriteBatch* batch;                 // holds the static SpriteBatch, drawn in render()
+  swift::SpriteBatch* batch;                 // the static sprite batch, drawn in render()
 
 };
 

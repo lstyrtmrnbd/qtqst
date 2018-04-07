@@ -14,7 +14,7 @@ Region::Region(int left, int top, int right, int bottom,
 
 Region::~Region() {
 
-  //delete batch; // ??
+  delete batch;
 }
 
 std::ostream& operator<<(std::ostream &out, const Region &region) {
