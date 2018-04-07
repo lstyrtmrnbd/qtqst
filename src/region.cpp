@@ -67,15 +67,14 @@ int Region::getHeight() {
   return height;
 }
 
-Cell& Region::getCellRelative(int x, int y) {
+Cell* Region::getCellRelative(int x, int y) {
 
   int relX = x + left;
   int relY = y + top;
 
-  if(relX > right || relY > bottom)
-    std::cout << "Region::getCellRelative accessing beyond region bounds!\n";
+  if(relX > right || relY > bottom) return nullptr;
   
-  return (*cells)[y + top][x + left];
+  return &(*cells)[y + top][x + left];
 }
 void Region::buildBatch() {
 

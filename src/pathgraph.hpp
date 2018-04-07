@@ -11,13 +11,15 @@ class PathGraph {
 public:
 
   PathGraph();
+  ~PathGraph();
 
-  const std::vector<PathNode*>& getNeighbors(const PathNode&);
-  void pushNeighbor(const PathNode&, PathNode*);
+  const std::vector<PathNode>& getNeighbors(const PathNode&);
+  void pushNeighbor(const PathNode, PathNode*);
 
 private:
 
-  std::map<PathNode, std::vector<PathNode*>> edges;
+  std::vector<PathNode>* nodes;
+  std::unordered_map<PathNode, std::vector<PathNode*>>* edges;
   
 };
 

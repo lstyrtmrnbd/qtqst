@@ -2,10 +2,17 @@
 
 PathGraph::PathGraph() {
 
-  edges = std::map<PathNode, std::vector<PathNode*>>();  
+  nodes = new std::vector<PathNode>();
+  edges = new std::unordered_map<PathNode, std::vector<PathNode*>>();  
 }
 
-const std::vector<PathNode*>& PathGraph::getNeighbors(const PathNode& node) {
+PathGraph::~PathGraph() {
+
+  delete nodes;
+  delete edges;
+}
+
+const std::vector<PathNode>& PathGraph::getNeighbors(const PathNode& node) {
 
   return edges[node];
 }

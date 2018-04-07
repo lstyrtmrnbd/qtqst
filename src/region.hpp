@@ -40,7 +40,7 @@ public:
   std::vector<std::vector<Cell>>* getLevelCells();
   int getWidth();
   int getHeight();
-  Cell& getCellRelative(int x, int y); // eg. (0,0) is top left of region
+  Cell* getCellRelative(int x, int y); // eg. (0,0) is top left of region, returns nullptr on out of bounds
 
   void update(double dticks);
   void render(double dtime, sf::RenderWindow& window);

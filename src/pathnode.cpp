@@ -10,3 +10,8 @@ bool PathNode::operator<(const PathNode& rhs) const {
 
   return this->difficulty < rhs.difficulty;
 }
+
+bool PathNode::operator==(const PathNode& rhs) const {
+
+  return (this->x == rhs.x && this->y == rhs.y);
+}
