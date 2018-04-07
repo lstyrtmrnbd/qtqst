@@ -67,7 +67,7 @@ int Region::getHeight() {
   return height;
 }
 
-Cell* Region::getCellRelative(int x, int y) {
+Cell* Region::getRelativeCell(int x, int y) {
 
   int relX = x + left;
   int relY = y + top;

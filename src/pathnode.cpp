@@ -1,7 +1,7 @@
 #include "pathnode.hpp"
 
 // does not currently deduce passability
-PathNode::PathNode(Cell& cell) {
+PathNode::PathNode(Cell& cell, int x, int y): x(x), y(y) {
 
   this->difficulty = cell.getDifficulty();
 }

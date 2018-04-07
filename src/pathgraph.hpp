@@ -1,10 +1,22 @@
 #ifndef PATHGRAPH_INCLUDE
 #define PATHGRAPH_INCLUDE
 
-#include <map>
+#include <functional>
+#include <unordered_map>
 #include <vector>
 
 #include "pathnode.hpp"
+
+// function object to hash a node
+struct hashNode {
+
+  std::size_t operator()(const PathNode& node) const {
+
+    return std::hash<int>()(node.x) ^ std::hash<int>()(node.y);
+  }
+};
+
+using Pathmap = std::unordered_map<PathNode, std::vector<PathNode>, hashNode>;
 
 class PathGraph {
 
@@ -13,12 +25,12 @@ public:
   PathGraph();
   ~PathGraph();
 
-  const std::vector<PathNode*>& getNeighbors(const PathNode&);
-  void pushNeighbor(const PathNode&, PathNode*);
+  const std::vector<PathNode>& getNeighbors(PathNode);
+  void pushNeighbor(PathNode, PathNode);
 
 private:
 
-  std::unordered_map<PathNode, std::vector<PathNode*>>* edges;
+  Pathmap* edges;
   
 };
 

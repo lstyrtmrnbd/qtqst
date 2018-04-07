@@ -3,10 +3,15 @@
 
 #include <queue>
 
-Class Pather {
+#include "pathgraph.hpp"
+#include "pathnode.hpp"
+#include "region.hpp"
+
+class Pather {
 
  public:
 
+  static PathGraph* parseRegion(Region&);
   
  private:
 
