@@ -17,6 +17,7 @@ public:
 
   Terrain::TerrainType getTerrainType();
   void setTerrainType(Terrain::TerrainType);
+  int getDifficulty();
   
   void push(Entity* entity);
   Entity* pop();

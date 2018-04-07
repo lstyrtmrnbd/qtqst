@@ -7,9 +7,7 @@ class Terrain {
 
 public:
 
-  // how broad should this be?
   enum TerrainType {
-
     grass,
     dirt,
     snow
@@ -20,11 +18,9 @@ public:
   ~Terrain();
 
   TerrainType terrainType;
+  int difficulty = 0; // additional difficulty applied to pathfinding cost
 
   friend std::ostream& operator<<(std::ostream&, const Terrain&);
-  
-private:
-
 };
 
 #endif // TERRAIN_INCLUDE

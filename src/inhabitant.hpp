@@ -1,5 +1,5 @@
-#ifndef MOVESPIRIT_INCLUDE
-#define MOVESPIRIT_INCLUDE
+#ifndef MOVER_INCLUDE
+#define MOVER_INCLUDE
 
 #include "cell.hpp"
 #include "entity.hpp"
@@ -7,11 +7,11 @@
 /**
  *These things live in Cells and move between them
  */
-class MoveSpirit {
+class Mover {
 
 public:
 
-  MoveSpirit(Cell* currentCell);
+  Mover(Cell* currentCell);
   void move(double dticks); //called during update to progress movement
   double getMovementProgress(); // whatever's in charge of drawing will want to know 
   
@@ -27,4 +27,4 @@ private:
   
 };
 
-#endif // MOVESPIRIT_INCLUDE
+#endif // MOVER_INCLUDE

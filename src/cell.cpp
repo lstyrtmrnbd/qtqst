@@ -14,6 +14,11 @@ void Cell::setTerrainType(Terrain::TerrainType newTerrainType) {
   terrain.terrainType = newTerrainType;
 }
 
+int Cell::getDifficulty() {
+
+  return terrain.difficulty;
+}
+
 std::ostream& operator<<(std::ostream &out, const Cell &cell) {
 
   return out << "Cell containing: \n" << cell.terrain;
