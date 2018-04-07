@@ -57,9 +57,14 @@ std::vector<std::vector<Cell>>* Region::getLevelCells() {
   return cells;
 }
 
-int Region::getSize() {
+int Region::getWidth() {
 
-  return width * height;
+  return width;
+}
+
+int Region::getHeight() {
+
+  return height;
 }
 
 Cell& Region::getCellRelative(int x, int y) {
@@ -68,7 +73,7 @@ Cell& Region::getCellRelative(int x, int y) {
   int relY = y + top;
 
   if(relX > right || relY > bottom)
-    std::cout << "Accessing beyond region bounds!\n";
+    std::cout << "Region::getCellRelative accessing beyond region bounds!\n";
   
   return (*cells)[y + top][x + left];
 }

@@ -16,8 +16,10 @@
  * -Holds a pointer to its parent Level's cells
  * -    but should only ever operate within its own defined subscripts! 
  * -Holds info for rendering terrain in the cells it references
+ * ---
  * -Holds pointers to entities that exist in its cells, so it can render them
  * -    this is maintained by Level.update() of its parent level
+ * -Rather it could just access them out of the cells...
  */
 class Region {
 
@@ -35,8 +37,9 @@ public:
   swift::SpriteBatch& getBatch();
   swift::Sprite& getStaticSprite(unsigned int index);
   std::vector<std::vector<Cell>>* getLevelCells();
-  int getSize();
-  Cell& getCellRelative(int x, int y);
+  int getWidth();
+  int getHeight();
+  Cell& getCellRelative(int x, int y); // eg. 0,0 is top left of region
 
   void update(double dticks);
   void render(double dtime, sf::RenderWindow& window);
