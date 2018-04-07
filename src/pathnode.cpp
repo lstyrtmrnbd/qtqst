@@ -6,6 +6,10 @@ PathNode::PathNode(Cell& cell, int x, int y): x(x), y(y) {
   this->difficulty = cell.getDifficulty();
 }
 
+PathNode::PathNode(int x, int y): x(x), y(y) {
+
+}
+
 bool PathNode::operator<(const PathNode& rhs) const {
 
   return this->difficulty < rhs.difficulty;

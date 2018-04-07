@@ -7,11 +7,14 @@
 #include "pathnode.hpp"
 #include "region.hpp"
 
+using Pathlist = std::map<std::pair<int, int>>;
+
 class Pather {
 
  public:
 
   static PathGraph* parseRegion(Region&);
+  static Pathlist* breadthFirst(PathGraph&);
   
  private:
 

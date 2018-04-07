@@ -10,7 +10,8 @@ class PathNode {
 public:
 
   PathNode(Cell&, int x, int y); // construct me by grabbing cell info
-
+  PathNode(int x, int y);
+  
   int x, y;
   bool passable = true;  // deduced from Cell entity stack on construction
   int difficulty = 0;    // additional cost to cross

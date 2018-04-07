@@ -10,8 +10,8 @@ PathGraph* Pather::parseRegion(Region& region) {
       int x = cellX; int y = cellY;
       int n = cellY + 1;
       int s = cellY - 1;
-      int e = cellX - 1;
-      int w = cellX + 1;
+      int e = cellX + 1;
+      int w = cellX - 1;
       
       Cell* north = region.getRelativeCell(x, n);
       Cell* south = region.getRelativeCell(x, s);
@@ -38,4 +38,32 @@ PathGraph* Pather::parseRegion(Region& region) {
     });
   
   return newGraph;
+}
+
+Pathlist* Pather::breadthFirst(PathGraph& graph, int startX, int startY) {
+
+  std::queue<PathNode> frontier();
+
+  frontier.push(PathNode(startX, startY));
+
+  Pathlist* cameFrom = new Pathlist();
+
+  while(!frontier.empty()) {
+
+    PathNode current = frontier.front();
+    frontier.pop();
+
+    for(PathNode next : graph.getNeighbors(current)) {
+
+      std::pair<int, int> pathLoc(next.x, next.y);
+      
+      if(cameFrom.find(pathLoc) == cameFrom.end()) {
+
+        frontier.push(next);
+        cameFrom[pathLoc] = std::pair<int, int>(current.x, current.y);
+      }
+    }
+  }
+  
+  return cameFrom;
 }
