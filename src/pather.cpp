@@ -74,7 +74,7 @@ Path* pathFromPrevious(Previousmap& prev, int startX, int startY) {
 
   auto vpit = prev.find(current); // iterator to next node in path
 
-  // while iterator is valid and next != current
+  // while iterator is valid and next node != current
   while( vpit != prev.end() && (*vpit).second != current) {
 
     path->push_back(std::make_pair(current.x, current.y));

@@ -9,11 +9,13 @@ Region::Region(int left, int top, int right, int bottom,
   width = right - left;
   height = bottom - top;
 
-  staticSprites = std::vector<swift::Sprite*>();
+  staticSprites = new std::vector<swift::Sprite*>();
 }
 
 Region::~Region() {
 
+  for(auto spritep : *staticSprites) delete spritep;
+  delete[] staticSprites;
   delete batch;
 }
 
@@ -45,11 +47,12 @@ swift::SpriteBatch& Region::getBatch() {
 
 swift::Sprite& Region::getStaticSprite(unsigned int index) {
 
-  if(index < 0 || index > staticSprites.size()) {
+  if(index < 0 || index > staticSprites->size()) {
 
     std::cout << "Region::getStaticSprite index out of bounds, returned first" << "\n";
-    return *staticSprites.front();
-  } else return *staticSprites.at(index);
+    return *staticSprites->front();
+    
+  } else return *staticSprites->at(index);
 }
 
 std::vector<std::vector<Cell>>* Region::getLevelCells() {
@@ -100,12 +103,37 @@ void Region::buildBatch() {
 
       temp->setPosition({xPos, yPos});
 
-      staticSprites.push_back(temp);
+      staticSprites->push_back(temp);
     });
 
-  std::cout << "staticSprites holds " << staticSprites.size() << " sprites\n";
+  std::cout << "staticSprites holds " << staticSprites->size() << " sprites\n";
 
   std::cout << "Region has a " << *batch;
+}
+
+void Region::rebuildBatch() {
+
+  for(auto spritep : *staticSprites) delete spritep;
+  delete[] staticSprites;
+  delete batch;
+
+  sf::Texture& ss = *(environment->getSpritesheet());
+  
+  staticSprites = new std::vector<swift::Sprite*>();
+  batch = new swift::SpriteBatch(ss, width * height);
+
+  doRegionCells([&](Cell &cell, int cellX, int cellY) {
+
+      swift::Sprite* temp = new swift::Sprite(*batch, environment->getSpriteBox(cell.getTerrainType()));
+
+      sf::FloatRect localCoords = temp->getLocalBounds();
+      float xPos = cellX * localCoords.width;
+      float yPos = cellY * localCoords.height;
+
+      temp->setPosition({xPos, yPos});
+
+      staticSprites->push_back(temp);
+    });
 }
 
 void Region::render(double dtime, sf::RenderWindow &window) {

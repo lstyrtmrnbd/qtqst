@@ -32,6 +32,7 @@ public:
 
   void setEnvironment(Environment* environment);
   void buildBatch(); // consults environment to fill batch with static sprites
+  void rebuildBatch();
   void doRegionCells(std::function<void(Cell&, int, int)>); // cell, cellX, cellY
 
   bool isActive();
@@ -64,7 +65,7 @@ private:
   std::vector<std::vector<Cell>>* cells; // a pointer to its parent Level's cell grid
   Environment* environment;              // defines the local terrain : sprites mapping
   
-  std::vector<swift::Sprite*> staticSprites; // holds the Sprites attached to batch
+  std::vector<swift::Sprite*>* staticSprites; // holds the Sprites attached to batch
   swift::SpriteBatch* batch;                 // the static sprite batch, drawn in render()
 
 };
