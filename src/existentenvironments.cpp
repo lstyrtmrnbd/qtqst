@@ -10,4 +10,6 @@ ExistentEnvironments::ExistentEnvironments(sf::Texture* defaultTexture): default
   defaultEnvironment->setSpriteBox(Terrain::TerrainType::dirt,
                                    sf::IntRect(128, 1056, 32, 32));
 
+  defaultEnvironment->setSpriteBox(Terrain::TerrainType::snow,
+                                   sf::IntRect(160, 2112, 32, 32));
 }

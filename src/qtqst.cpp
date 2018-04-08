@@ -2,10 +2,11 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "inputhandler.hpp"
 #include "existentenvironments.hpp"
+#include "inputhandler.hpp"
 #include "level.hpp"
 #include "levelpainter.hpp"
+#include "pather.hpp"
 
 double secondsPerTick = 0.5;
 
@@ -18,6 +19,23 @@ LevelPainter* levelPainter;
 Level* currentLevel;
 
 InputHandler* handler; 
+
+
+void testPathFinder(Region& region, std::pair<int, int> start, std::pair<int, int> end) {
+
+  PathGraph* graph = Pather::parseRegion(region);
+  Previousmap* prevMap = Pather::breadthFirst(*graph, end.first, end.second);
+  Path* path = Pather::pathFromPrevious(*prevMap, start.first, start.second);
+
+  Pather::doPath(*path, [&region](int x, int y) {
+
+      Cell* cell = region.getRelativeCell(x, y);
+
+      cell->setTerrainType(Terrain::TerrainType::snow);
+    });
+
+  region.rebuildBatch();
+}
 
 int main() {
   
@@ -44,8 +62,10 @@ int main() {
 
   std::cout << "Current level painted: "<< *currentLevel;
 
-  std::cout << "Region 0 batch: " << currentLevel->getRegion(0).getBatch();
-
+  Region& regionZero = currentLevel->getRegion(0);
+  
+  std::cout << "Region 0 batch: " << regionZero.getBatch();
+  
   sf::CircleShape shape(100.f);
   shape.setFillColor(sf::Color::Green);
 
@@ -75,3 +95,4 @@ int main() {
 
   return 0;
 }
+

@@ -67,7 +67,7 @@ Previousmap* Pather::breadthFirst(PathGraph& graph, int fromX, int fromY) {
   return cameFrom;
 }
 
-Path* pathFromPrevious(Previousmap& prev, int startX, int startY) {
+Path* Pather::pathFromPrevious(Previousmap& prev, int startX, int startY) {
 
   Path* path = new Path();
   PathNode current = PathNode(startX, startY);
@@ -83,4 +83,13 @@ Path* pathFromPrevious(Previousmap& prev, int startX, int startY) {
   }
 
   return path;
+}
+
+void Pather::doPath(Path& path, std::function<void(int x, int y)> fp) {
+
+  for(auto it = path.begin(); it != path.end(); ++it) {
+
+    std::pair<int, int>& p = *it;    
+    fp(p.first, p.second);
+  }
 }

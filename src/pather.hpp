@@ -1,6 +1,7 @@
 #ifndef PATHER_INCLUDE
 #define PATHER_INCLUDE
 
+#include <functional>
 #include <queue>
 
 #include "pathgraph.hpp"
@@ -20,7 +21,8 @@ class Pather {
 
   static PathGraph* parseRegion(Region&);
   static Previousmap* breadthFirst(PathGraph&, int, int);
-  static Path* pathFromPrevious(Previousmap&);
+  static Path* pathFromPrevious(Previousmap&, int, int);
+  static void doPath(Path&, std::function<void(int x, int y)>);
   
  private:
 
