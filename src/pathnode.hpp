@@ -9,7 +9,7 @@ class PathNode {
 
 public:
 
-  PathNode(Cell&, int x, int y); // construct me by grabbing cell info
+  PathNode(Cell&, int x, int y); // construct by grabbing cell info
   PathNode(int x, int y);
   
   int x, y;

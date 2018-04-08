@@ -12,7 +12,7 @@ PathNode::PathNode(int x, int y): x(x), y(y) {
 
 bool PathNode::operator<(const PathNode& rhs) const {
 
-  return this->difficulty < rhs.difficulty;
+  return (this->y < rhs.y) ? true : (this->x < rhs.x);
 }
 
 bool PathNode::operator==(const PathNode& rhs) const {
