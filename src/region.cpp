@@ -15,7 +15,7 @@ Region::Region(int left, int top, int right, int bottom,
 Region::~Region() {
 
   for(auto spritep : *staticSprites) delete spritep;
-  delete[] staticSprites;
+  delete staticSprites;
   delete batch;
 }
 
@@ -114,7 +114,7 @@ void Region::buildBatch() {
 void Region::rebuildBatch() {
 
   for(auto spritep : *staticSprites) delete spritep;
-  delete[] staticSprites;
+  delete staticSprites;
   delete batch;
 
   sf::Texture& ss = *(environment->getSpritesheet());
