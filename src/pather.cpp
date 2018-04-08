@@ -70,20 +70,17 @@ Previousmap* Pather::breadthFirst(PathGraph& graph, int fromX, int fromY) {
 Path* pathFromPrevious(Previousmap& prev, int startX, int startY) {
 
   Path* path = new Path();
-
-  //path->push_back(std::make_pair(startX, startY));
-
   PathNode current = PathNode(startX, startY);
-  PathNode next;
 
-  auto vpit = prev.find(current); // prevmap iterator
-  
-  do {
+  auto vpit = prev.find(current); // iterator to next node in path
+
+  // while iterator is valid and next != current
+  while( vpit != prev.end() && (*vpit).second != current) {
+
+    path->push_back(std::make_pair(current.x, current.y));
+    current = (*vpit).second;
     vpit = prev.find(current);
-  
-    next = *vpit;
-    path->push_back(std::make_pair(next.x, next.y));
-  }  while(/**vpit != next*/);
+  }
 
-  //cycle until *prev.find(x,y) == x,y
+  return path;
 }

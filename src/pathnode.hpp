@@ -19,6 +19,7 @@ public:
   // these operators allow use of pathnode as map keys
   bool operator<(const PathNode& rhs) const;  // for std::map
   bool operator==(const PathNode& rhs) const; // for std::unordered_map
+  bool operator!=(const PathNode& rhs) const;
 };
 
 #endif // PATHNODE_INCLUDE

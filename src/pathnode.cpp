@@ -19,3 +19,8 @@ bool PathNode::operator==(const PathNode& rhs) const {
 
   return (this->x == rhs.x && this->y == rhs.y);
 }
+
+bool PathNode::operator!=(const PathNode& rhs) const {
+
+  return !(*this == rhs);
+}
