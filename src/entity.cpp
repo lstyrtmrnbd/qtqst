@@ -1,15 +1,13 @@
 #include "entity.hpp"
 
-Entity::Entity(Cell* currentCell): currentCell(currentCell) {
+Entity::Entity() {
 
 }
 
-//dt is in 'ticks', don't forget it
-void Entity::updateGameLogic(double dt) {
+void Entity::update(double dticks) {
 
-  move(dt);
 }
 
-void Entity::move(double dt) {
+void Entity::render(double dtime) {
 
 }

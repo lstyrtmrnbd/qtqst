@@ -16,6 +16,7 @@ struct hashNode {
   }
 };
 
+// this mapping is the graph
 using Pathmap = std::unordered_map<PathNode, std::vector<PathNode>, hashNode>;
 
 class PathGraph {

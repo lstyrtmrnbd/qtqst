@@ -40,16 +40,14 @@ PathGraph* Pather::parseRegion(Region& region) {
   return newGraph;
 }
 
-Pathmap* Pather::breadthFirst(PathGraph& graph, int startX, int startY) {
+Previousmap* Pather::breadthFirst(PathGraph& graph, int startX, int startY) {
 
-  std::queue<PathNode> frontier();
-
-  PathNode start(startX, startY);
-  
+  std::queue<PathNode> frontier;
+  PathNode start = PathNode(startX, startY);
   frontier.push(start);
 
-  Pathmap* cameFrom = new Pathmap();
-  (*cameFrom)[start] = start;
+  Previousmap* cameFrom = new Previousmap();
+  cameFrom->insert(std::make_pair(start, start)); // HERE
 
   while(!frontier.empty()) {
 
@@ -61,7 +59,7 @@ Pathmap* Pather::breadthFirst(PathGraph& graph, int startX, int startY) {
       if(cameFrom->find(next) == cameFrom->end()) {
 
         frontier.push(next);
-        (*cameFrom)[next] = current;
+        (*cameFrom)[next] = current; // and HERE
       }
     }
   }

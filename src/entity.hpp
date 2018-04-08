@@ -1,8 +1,6 @@
 #ifndef ENTITY_INCLUDE
 #define ENTITY_INCLUDE
 
-#include "cell.hpp"
-
 class Entity {
 
 public:

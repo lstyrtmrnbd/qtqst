@@ -7,14 +7,14 @@
 #include "pathnode.hpp"
 #include "region.hpp"
 
-using Pathmap = std::map<PathNode, PathNode>;
+using Previousmap = std::map<PathNode, PathNode>;
 
 class Pather {
 
  public:
 
   static PathGraph* parseRegion(Region&);
-  static Pathmap* breadthFirst(PathGraph&);
+  static Previousmap* breadthFirst(PathGraph&, int, int);
   
  private:
 
