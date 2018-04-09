@@ -4,7 +4,8 @@ Region::Region(int left, int top, int right, int bottom,
                std::vector<std::vector<Cell>>* cells):
   left(left), top(top), right(right), bottom(bottom), cells(cells) {
 
-  environment = NULL;
+  batch = nullptr;
+  environment = nullptr;
   
   width = right - left;
   height = bottom - top;
@@ -15,6 +16,7 @@ Region::Region(int left, int top, int right, int bottom,
 Region::~Region() {
 
   for(auto spritep : *staticSprites) delete spritep;
+  staticSprites->clear();
   delete staticSprites;
   delete batch;
 }
@@ -81,8 +83,7 @@ Cell* Region::getRelativeCell(int x, int y) {
 }
 void Region::buildBatch() {
 
-  if(environment == NULL) {
-
+  if(environment == nullptr) {
     std::cout << "Environment must be initialized before buildBatch" << "\n";
     return;
   }
@@ -92,6 +93,8 @@ void Region::buildBatch() {
   sf::Texture& ss = *(environment->getSpritesheet());
   
   batch = new swift::SpriteBatch(ss, width * height);
+
+  std::cout << "staticSprites holds " << staticSprites->size() << " sprites\n";
 
   doRegionCells([&](Cell &cell, int cellX, int cellY) {
 
@@ -114,12 +117,11 @@ void Region::buildBatch() {
 void Region::rebuildBatch() {
 
   for(auto spritep : *staticSprites) delete spritep;
-  delete staticSprites;
+  staticSprites->clear();
   delete batch;
 
   sf::Texture& ss = *(environment->getSpritesheet());
   
-  staticSprites = new std::vector<swift::Sprite*>();
   batch = new swift::SpriteBatch(ss, width * height);
 
   doRegionCells([&](Cell &cell, int cellX, int cellY) {

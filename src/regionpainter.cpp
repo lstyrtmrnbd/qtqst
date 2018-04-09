@@ -14,7 +14,9 @@ void RegionPainter::paintEmptyRegion(Region &region) {
     });
 
   // build static sprites
+  std::cout << "Now entering buildBatch\n";
   region.buildBatch();
+  std::cout << "Now exiting buildBatch\n";
 }
 
 // statistically speaking...

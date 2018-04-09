@@ -31,7 +31,7 @@ void testPathFinder(Region& region, std::pair<int, int> start, std::pair<int, in
 
       Cell* cell = region.getRelativeCell(x, y);
 
-      cell->setTerrainType(Terrain::TerrainType::snow);
+      if(cell != nullptr) cell->setTerrainType(Terrain::TerrainType::snow);
     });
 
   region.rebuildBatch();
@@ -63,6 +63,8 @@ int main() {
   std::cout << "Current level painted: "<< *currentLevel;
 
   Region& regionZero = currentLevel->getRegion(0);
+
+  //testPathFinder(regionZero, std::make_pair(0, 0), std::make_pair(32, 32));
   
   std::cout << "Region 0 batch: " << regionZero.getBatch();
   

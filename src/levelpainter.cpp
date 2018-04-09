@@ -5,12 +5,15 @@ LevelPainter::LevelPainter(ExistentEnvironments* environments): environments(env
 }
 
 Level* LevelPainter::paintEmptyLevel(int width, int height) {
-  
+
+
+  std::cout << "Enter paintEmptyLevel\n";
   Terrain terrain(Terrain::TerrainType::grass); // grass is the "default" terrain
   
   std::vector<std::vector<Cell>>* pCells = new std::vector<std::vector<Cell>>(height, std::vector<Cell>(width, Cell(terrain)));
   
-  std::vector<Region>* regions = new std::vector<Region>(1, Region(0, 0, width, height, pCells));
+  std::vector<Region>* regions = new std::vector<Region>();
+  regions->emplace_back(0, 0, width, height, pCells);
 
   regions->front().setEnvironment(environments->defaultEnvironment);
 
