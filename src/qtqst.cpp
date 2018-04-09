@@ -41,8 +41,8 @@ int main() {
   
   sf::RenderWindow window(sf::VideoMode(640, 480), "qtqst under construction");
 
-  int viewWidth = 2560/4;
-  int viewHeight = 1920/4;
+  int viewWidth = 2560/2;
+  int viewHeight = 1920/2;
   
   sf::View playerView(sf::Vector2f(viewWidth/2, viewHeight/2),
                       sf::Vector2f(viewWidth, viewHeight));
@@ -64,7 +64,7 @@ int main() {
 
   Region& regionZero = currentLevel->getRegion(0);
 
-  //testPathFinder(regionZero, std::make_pair(0, 0), std::make_pair(32, 32));
+  testPathFinder(regionZero, std::make_pair(0, 0), std::make_pair(32, 32));
   
   std::cout << "Region 0 batch: " << regionZero.getBatch();
   

@@ -18,7 +18,7 @@ public:
   ~Terrain();
 
   TerrainType terrainType;
-  int difficulty = 0; // additional difficulty applied to pathfinding cost
+  int difficulty; // additional difficulty applied to pathfinding cost
 
   friend std::ostream& operator<<(std::ostream&, const Terrain&);
 };

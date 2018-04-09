@@ -6,7 +6,6 @@ LevelPainter::LevelPainter(ExistentEnvironments* environments): environments(env
 
 Level* LevelPainter::paintEmptyLevel(int width, int height) {
 
-
   std::cout << "Enter paintEmptyLevel\n";
   Terrain terrain(Terrain::TerrainType::grass); // grass is the "default" terrain
   
