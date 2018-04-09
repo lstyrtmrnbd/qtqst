@@ -2,6 +2,7 @@
 #define PATHER_INCLUDE
 
 #include <functional>
+#include <iostream>
 #include <queue>
 
 #include "pathgraph.hpp"

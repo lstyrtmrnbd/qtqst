@@ -27,10 +27,18 @@ void testPathFinder(Region& region, std::pair<int, int> start, std::pair<int, in
   Previousmap* prevMap = Pather::breadthFirst(*graph, end.first, end.second);
   Path* path = Pather::pathFromPrevious(*prevMap, start.first, start.second);
 
+  std::cout << "----pathing----\n"
+            << "graph " << *graph << "\n"
+            << "prevMap size: " << prevMap->size() << "\n"
+            << "path length: " << path->size() << "\n"
+            << "---------------\n";
+
   Pather::doPath(*path, [&region](int x, int y) {
 
       Cell* cell = region.getRelativeCell(x, y);
 
+      std::cout << "doPath visiting: " << x << ", " << y << "\n";
+      
       if(cell != nullptr) cell->setTerrainType(Terrain::TerrainType::snow);
     });
 
@@ -62,9 +70,9 @@ int main() {
 
   std::cout << "Current level painted: "<< *currentLevel;
 
-  Region& regionZero = currentLevel->getRegion(0);
+  Region regionZero = currentLevel->getRegion(0);
 
-  testPathFinder(regionZero, std::make_pair(0, 0), std::make_pair(32, 32));
+  testPathFinder(regionZero, std::make_pair(2, 2), std::make_pair(28, 28));
   
   std::cout << "Region 0 batch: " << regionZero.getBatch();
   

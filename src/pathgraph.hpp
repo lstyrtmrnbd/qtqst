@@ -29,9 +29,13 @@ public:
   const std::vector<PathNode>& getNeighbors(PathNode);
   void pushNeighbor(PathNode, PathNode);
 
+  friend std::ostream& operator<<(std::ostream&, const PathGraph&);
+
 private:
 
   Pathmap* edges;
+
+  
   
 };
 

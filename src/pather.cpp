@@ -46,7 +46,7 @@ Previousmap* Pather::breadthFirst(PathGraph& graph, int fromX, int fromY) {
   PathNode start = PathNode(fromX, fromY);
   frontier.push(start);
 
-  Previousmap* cameFrom = new Previousmap;
+  Previousmap* cameFrom = new Previousmap();
   cameFrom->insert(std::make_pair(start, start)); // HERE
 
   while(!frontier.empty()) {
@@ -62,6 +62,8 @@ Previousmap* Pather::breadthFirst(PathGraph& graph, int fromX, int fromY) {
         cameFrom->insert(std::make_pair(next, current)); // and HERE
       }
     }
+
+    std::cout << "breadthFirst filled prevMap: " << cameFrom->size() << "\n";
   }
   
   return cameFrom;
@@ -75,10 +77,10 @@ Path* Pather::pathFromPrevious(Previousmap& prev, int startX, int startY) {
   auto vpit = prev.find(current); // iterator to next node in path
 
   // while iterator is valid and next node != current
-  while( vpit != prev.end() && (*vpit).second != current) {
+  while( vpit != prev.end() && vpit->second != current) {
 
     path->push_back(std::make_pair(current.x, current.y));
-    current = (*vpit).second;
+    current = vpit->second;
     vpit = prev.find(current);
   }
 
@@ -88,8 +90,7 @@ Path* Pather::pathFromPrevious(Previousmap& prev, int startX, int startY) {
 void Pather::doPath(Path& path, std::function<void(int x, int y)> fp) {
 
   for(auto it = path.begin(); it != path.end(); ++it) {
-
-    std::pair<int, int>& p = *it;    
-    fp(p.first, p.second);
+    
+    fp(it->first, it->second);
   }
 }

@@ -19,3 +19,8 @@ void PathGraph::pushNeighbor(PathNode node, PathNode neighbor) {
 
   (*edges)[node].push_back(neighbor);
 }
+
+std::ostream& operator<<(std::ostream& out, const PathGraph& graph) {
+
+  return out << "PathGraph of map size: " << graph.edges->size() << "\n";
+}
