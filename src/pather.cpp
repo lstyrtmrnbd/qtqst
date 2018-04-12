@@ -46,8 +46,9 @@ Previousmap* Pather::breadthFirst(PathGraph& graph, int fromX, int fromY) {
   PathNode start = PathNode(fromX, fromY);
   frontier.push(start);
 
-  Previousmap* cameFrom = new Previousmap();
-  cameFrom->insert(std::make_pair(start, start)); // HERE
+  Previousmap* cameFrom = new Previousmap(std::make_pair(0, 0));
+  //cameFrom->insert(std::make_pair(start, start)); // HERE
+  cameFrom->at(fromY)->at(fromX)
 
   while(!frontier.empty()) {
 

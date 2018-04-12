@@ -7,7 +7,7 @@
 
 #include "pathnode.hpp"
 
-// function object to hash a node, just OR's the hash of x and y members
+// function object to hash a node, just XOR's the hash of x and y members
 struct hashNode {
 
   std::size_t operator()(const PathNode& node) const {
@@ -17,7 +17,7 @@ struct hashNode {
 };
 
 // this mapping is the graph
-using Pathmap = std::unordered_map<PathNode, std::vector<PathNode>, hashNode>;
+using Pathmap = std::unordered_map<PathNode, std::vector<PathNode*>, hashNode>;
 
 class PathGraph {
 
@@ -26,8 +26,10 @@ public:
   PathGraph();
   ~PathGraph();
 
-  const std::vector<PathNode>& getNeighbors(PathNode);
-  void pushNeighbor(PathNode, PathNode);
+  const std::vector<PathNode*>& getNeighbors(PathNode);
+  void pushNeighbor(PathNode, PathNode)
+  void pushNeighbor(PathNode, PathNode*);
+  int getSize();
 
   friend std::ostream& operator<<(std::ostream&, const PathGraph&);
 
