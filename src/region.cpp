@@ -79,7 +79,7 @@ Cell* Region::getRelativeCell(int x, int y) {
 
   if(relX > right || relY > bottom) return nullptr;
   
-  return &(*cells)[y + top][x + left];
+  return &(*cells)[relY][relX];
 }
 void Region::buildBatch() {
 

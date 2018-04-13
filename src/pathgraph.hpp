@@ -2,6 +2,7 @@
 #define PATHGRAPH_INCLUDE
 
 #include <functional>
+#include <memory>
 #include <unordered_map>
 #include <vector>
 
@@ -17,7 +18,7 @@ struct hashNode {
 };
 
 // this mapping is the graph
-using Pathmap = std::unordered_map<PathNode, std::vector<PathNode*>, hashNode>;
+using Pathmap = std::vector<std::vector<std::pair<PathNode, std::vector<PathNode*>>>>;
 
 class PathGraph {
 

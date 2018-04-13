@@ -10,9 +10,9 @@
 #include "region.hpp"
 
 // mapping of nodes to the node visited before them
-// keys are considered equivalent if std::map::key_comp returns false reflexively
 // outer vector is y, inner x
 using Previousmap = std::vector<std::vector<std::pair<int, int>>>;
+using Previousrow = std::vector<std::pair<int, int>>;
 
 // sequence of x, y values defining a path
 using Path = std::vector<std::pair<int, int>>;
