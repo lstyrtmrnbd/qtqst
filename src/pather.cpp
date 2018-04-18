@@ -48,6 +48,7 @@ PathGraph* Pather::parseRegion(Region& region) {
   // instantiate graph nodes
   region.doRegionCells([&](Cell& cell, int cellX, int cellY) {
 
+      PathNode(cell, cellX, cellY);
     });
 
   // fill graph pointer vectors

@@ -20,6 +20,10 @@ struct hashNode {
 // this mapping is the graph
 using Pathmap = std::vector<std::vector<std::pair<PathNode, std::vector<PathNode*>>>>;
 
+using NodeGrid = std::vector<std::vector<PathNode>>;
+
+using NeighborGrid = std::vector<std::vector<std::vector<PathNode*>>>;
+
 class PathGraph {
 
 public:
@@ -38,8 +42,6 @@ private:
 
   Pathmap* edges;
 
-  
-  
 };
 
 #endif
